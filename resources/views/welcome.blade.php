@@ -125,7 +125,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div class="relative">
                         <div class="absolute -inset-4 bg-primary-100 rounded-2xl transform rotate-3"></div>
-                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="About Sawaed" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
+                        <img src="{{ asset($settings->get('about_image'))?:'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80' }}" alt="About Sawaed" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
                         <div class="absolute -bottom-10 -left-10 bg-white p-6 rounded-xl shadow-xl max-w-xs hidden md:block border-t-4 border-secondary-600">
                             <div class="flex items-center gap-4">
                                 <div class="bg-primary-50 p-3 rounded-full text-primary-600">

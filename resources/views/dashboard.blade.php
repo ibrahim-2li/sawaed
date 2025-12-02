@@ -91,7 +91,7 @@
 
         <!-- Settings Tab -->
         <div x-show="activeTab === 'settings'" class="bg-white shadow overflow-hidden sm:rounded-lg p-6">
-            <form action="{{ route('dashboard.settings.update') }}" method="POST">
+            <form action="{{ route('dashboard.settings.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     
@@ -131,6 +131,14 @@
                     <div class="sm:col-span-6">
                         <label for="about_description_2" class="block text-sm font-medium text-gray-700">الوصف الثاني</label>
                         <textarea name="about_description_2" id="about_description_2" rows="3" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2 border">{{ $settings->get('about_description_2') }}</textarea>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                        <label for="about_image" class="block text-sm font-medium text-gray-700">صورة قسم من نحن</label>
+                        @if($settings->get('about_image'))
+                            <img src="{{ asset($settings->get('about_image')) }}" alt="About Image" class="mt-2 mb-2 h-32 w-auto rounded-lg object-cover">
+                        @endif
+                        <input type="file" name="about_image" id="about_image" accept="image/*" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2 border">
                     </div>
 
                     <div class="sm:col-span-6 border-t pt-4 mt-4">

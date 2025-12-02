@@ -22,12 +22,23 @@ class DashboardController extends Controller
 
     public function updateSettings(Request $request)
     {
-        $data = $request->except('_token');
+        $data = $request->except(['_token', 'about_image']);
 
         foreach ($data as $key => $value) {
             Setting::updateOrCreate(
                 ['key' => $key],
                 ['value' => $value]
+            );
+        }
+
+        if ($request->hasFile('about_image')) {
+            $file = $request->file('about_image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $filename);
+            
+            Setting::updateOrCreate(
+                ['key' => 'about_image'],
+                ['value' => 'images/' . $filename]
             );
         }
 
