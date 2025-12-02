@@ -133,7 +133,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm text-gray-500">خبرة أكثر من</p>
-                                    <p class="text-2xl font-bold text-gray-900">10 سنوات</p>
+                                    <p class="text-2xl font-bold text-gray-900">33 سنة</p>
                                 </div>
                             </div>
                         </div>
@@ -232,23 +232,23 @@
         <section class="py-20 bg-white overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">عملاؤنا</h2>
-                    <h3 class="text-4xl font-bold text-gray-900">شركاء النجاح</h3>
+                    <!-- <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">عملاؤنا</h2> -->
+                    <h3 class="text-4xl font-bold text-gray-900"> عملاؤنا</h3>
                     <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">نفخر بخدمة أبرز المؤسسات الحكومية والعسكرية في المملكة</p>
                 </div>
 
                 <!-- Scrolling Logos Container -->
-                <div class="relative">
-                    <div class="logos-slide flex gap-12 items-center">
+                <div class="relative overflow-hidden">
+                    <div class="logos-slide flex gap-6 items-center animate-scroll">
                         @foreach($clients as $client)
-                            <div class="flex-shrink-0 w-32 h-24 bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
-                                <img src="{{ asset($client->logo) }}" width="120" height="120" alt="{{ $client->name }}" class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
+                            <div class="flex-shrink-0 w-42 h-34 hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+                                <img src="{{ asset($client->logo) }}" width="140" height="140" alt="{{ $client->name }}" class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
                             </div>
                         @endforeach
                         <!-- Duplicate for seamless loop -->
                         @foreach($clients as $client)
-                            <div class="flex-shrink-0 w-32 h-24 bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
-                                <img src="{{ asset($client->logo) }}" width="120" height="120" alt="{{ $client->name }}" class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
+                            <div class="flex-shrink-0 w-42 h-34 hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+                                <img src="{{ asset($client->logo) }}" width="140" height="140" alt="{{ $client->name }}" class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
                             </div>
                         @endforeach
                     </div>
@@ -262,7 +262,7 @@
                     transform: translateX(0);
                 }
                 100% {
-                    transform: translateX(-50%);
+                    transform: translateX(-100%);
                 }
             }
 

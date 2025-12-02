@@ -94,6 +94,10 @@ class DashboardController extends Controller
 
     public function destroyService(Service $service)
     {
+        if ($service->image && file_exists(public_path($service->image))) {
+            unlink(public_path($service->image));
+        }
+
         $service->delete();
 
         return redirect()->back()->with('success', 'Service deleted successfully.');
@@ -129,6 +133,7 @@ class DashboardController extends Controller
     {
         $project->delete();
 
+        return redirect()->back()->with('success', 'Project deleted successfully.');
     }
 
     public function storeClient(Request $request)

@@ -418,7 +418,7 @@
                                     <form x-ref="deleteForm" action="{{ route('dashboard.clients.destroy', $client->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" @click="if(confirm('هل أنت متأكد؟')) $refs.deleteForm.submit()" class="text-red-600 hover:text-red-900 cursor-pointer">حذف</button>
+                                        <button type="submit" @click="confirmDelete" class="text-red-600 hover:text-red-900 cursor-pointer">حذف</button>
                                     </form>
                                 </div>
                             </div>
