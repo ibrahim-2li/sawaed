@@ -28,7 +28,7 @@
                                     100: '#e0ebff',
                                     500: '#3b82f6',
                                     600: '#01349b',
-                                    700: '#012a7c',
+                                    700: '#05389eff',
                                     800: '#01205e',
                                     900: '#001030',
                                 },
@@ -100,13 +100,13 @@
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-                    <span class="block">الريادة في خدمات</span>
+                    <span class="block">{{ $settings->get('hero_title', 'الريادة في خدمات') }}</span>
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-white to-secondary-500">
-                        الإعاشة والخدمات اللوجستية
+                        {{ $settings->get('hero_subtitle', 'الإعاشة والخدمات اللوجستية') }}
                     </span>
                 </h1>
                 <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-300 mb-10">
-                    نقدم حلولاً متكاملة في التموين الغذائي، تنظيم الفعاليات، والخدمات اللوجستية بمعايير عالمية وجودة لا تضاهى.
+                    {{ $settings->get('hero_description', 'نقدم حلولاً متكاملة في التموين الغذائي، تنظيم الفعاليات، والخدمات اللوجستية بمعايير عالمية وجودة لا تضاهى.') }}
                 </p>
                 <div class="flex justify-center gap-4">
                     <a href="#services" class="px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-lg shadow-lg shadow-primary-600/30 hover:bg-primary-500 hover:scale-105 transition-all duration-300 border border-primary-500">
@@ -140,12 +140,12 @@
                     </div>
                     <div>
                         <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">من نحن</h2>
-                        <h3 class="text-4xl font-bold text-gray-900 mb-6">شريكك الاستراتيجي للنجاح والتميز</h3>
+                        <h3 class="text-4xl font-bold text-gray-900 mb-6">{{ $settings->get('about_title', 'شريكك الاستراتيجي للنجاح والتميز') }}</h3>
                         <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                            قامت شركة سواعد الرياض بتنفيذ العديد من المشاريع داخل المملكة في مجموعة متنوعة من القطاعات، بما في ذلك قطاع الإعاشة، وسلاسل الإمداد الغذائي والتمويني، وقطاع الإنشاءات والتطوير العقاري.
+                            {{ $settings->get('about_description_1', 'قامت شركة سواعد الرياض بتنفيذ العديد من المشاريع داخل المملكة في مجموعة متنوعة من القطاعات، بما في ذلك قطاع الإعاشة، وسلاسل الإمداد الغذائي والتمويني، وقطاع الإنشاءات والتطوير العقاري.') }}
                         </p>
                         <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                            نتميز بفريق استشاري وإداري وتنفيذي ذو خبرة احترافية عالية في تخطيط وتنظيم وإدارة الفعاليات والمؤتمرات. نلتزم بأعلى معايير الجودة والسلامة المهنية لضمان نجاح مشاريع عملائنا.
+                            {{ $settings->get('about_description_2', 'نتميز بفريق استشاري وإداري وتنفيذي ذو خبرة احترافية عالية في تخطيط وتنظيم وإدارة الفعاليات والمؤتمرات. نلتزم بأعلى معايير الجودة والسلامة المهنية لضمان نجاح مشاريع عملائنا.') }}
                         </p>
                         
                         <div class="grid grid-cols-2 gap-6">
@@ -182,71 +182,29 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Service 1 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-primary-600">
-                        <div class="w-14 h-14 bg-primary-50 rounded-xl flex items-center justify-center text-primary-600 mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    @foreach($services as $service)
+                    <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-600">
+                        @if($service->image)
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            </div>
+                        @endif
+                        <div class="p-8">
+                            <div class="w-14 h-14 bg-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-50 rounded-xl flex items-center justify-center text-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-600 mb-6">
+                                @if($service->icon)
+                                    {!! $service->icon !!}
+                                @else
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                @endif
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-3">{{ $service->title }}</h4>
+                            <p class="text-gray-600">
+                                {{ $service->description }}
+                            </p>
                         </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3">الإعاشة والتموين</h4>
-                        <p class="text-gray-600">
-                            تشغيل الكفتريات في المصانع والمستشفيات والمدارس الحكومية والخاصة بأعلى معايير النظافة والجودة.
-                        </p>
                     </div>
-
-                    <!-- Service 2 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-secondary-600">
-                        <div class="w-14 h-14 bg-secondary-50 rounded-xl flex items-center justify-center text-secondary-600 mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3">تنظيم الفعاليات</h4>
-                        <p class="text-gray-600">
-                            تخطيط وتنظيم وإدارة الفعاليات والاجتماعات والمؤتمرات وورش العمل والمناسبات الحكومية والخاصة.
-                        </p>
-                    </div>
-
-                    <!-- Service 3 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-primary-600">
-                        <div class="w-14 h-14 bg-primary-50 rounded-xl flex items-center justify-center text-primary-600 mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3">الخدمات اللوجستية</h4>
-                        <p class="text-gray-600">
-                            خدمات لوجستية متكاملة تشمل التخزين والنقل عبر أسطول ضخم يضم أكثر من 400 مركبة لضمان سرعة الوصول.
-                        </p>
-                    </div>
-                    
-                    <!-- Service 4 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-secondary-600">
-                        <div class="w-14 h-14 bg-secondary-50 rounded-xl flex items-center justify-center text-secondary-600 mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3">الصيانة والتشغيل</h4>
-                        <p class="text-gray-600">
-                            فريق صيانة متكامل ومتخصص لصيانة أدوات تنفيذ الأعمال المختلفة لضمان استمرارية العمل بكفاءة.
-                        </p>
-                    </div>
-
-                    <!-- Service 5 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-primary-600">
-                        <div class="w-14 h-14 bg-primary-50 rounded-xl flex items-center justify-center text-primary-600 mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3">الأسواق المركزية</h4>
-                        <p class="text-gray-600">
-                            إدارة وتشغيل الأسواق المركزية وتوفير كافة الاحتياجات الغذائية والاستهلاكية.
-                        </p>
-                    </div>
-
-                    <!-- Service 6 -->
-                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-secondary-600">
-                        <div class="w-14 h-14 bg-secondary-50 rounded-xl flex items-center justify-center text-secondary-600 mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3">قطاع التبريد</h4>
-                        <p class="text-gray-600">
-                            حلول متطورة في قطاع التبريد لضمان سلامة وجودة المنتجات الغذائية والطبية.
-                        </p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -260,41 +218,62 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-primary-600 hover:bg-white hover:shadow-lg transition-all">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">مشروع إعاشة موقوفي الجوازات</h4>
-                        <p class="text-gray-600 text-sm">في جميع مناطق المملكة لمدة ستة أعوام متتالية، وتأمين ما يقارب 1,200,000 وجبة سنوياً.</p>
+                    @foreach($projects as $project)
+                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-{{ $project->color === 'primary' ? 'primary' : 'secondary' }}-600 hover:bg-white hover:shadow-lg transition-all">
+                        <h4 class="font-bold text-lg text-gray-900 mb-2">{{ $project->title }}</h4>
+                        <p class="text-gray-600 text-sm">{{ $project->description }}</p>
                     </div>
-                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-secondary-600 hover:bg-white hover:shadow-lg transition-all">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">رئاسة الاستخبارات العامة</h4>
-                        <p class="text-gray-600 text-sm">مشروع تأمين الإعاشة المطهية لمنسوبي الرئاسة.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-primary-600 hover:bg-white hover:shadow-lg transition-all">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">قوات أمن المنشآت</h4>
-                        <p class="text-gray-600 text-sm">مشروع تأمين الإعاشة لمنسوبي القوات.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-secondary-600 hover:bg-white hover:shadow-lg transition-all">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">الدفاع المدني</h4>
-                        <p class="text-gray-600 text-sm">مشروع توريد وتأمين الإعاشة لمنسوبي الدفاع المدني.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-primary-600 hover:bg-white hover:shadow-lg transition-all">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">قوات الطوارئ</h4>
-                        <p class="text-gray-600 text-sm">مشروع توريد وطهي وتقديم الإعاشة لقوات الطوارئ بالمملكة.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-secondary-600 hover:bg-white hover:shadow-lg transition-all">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">قوات الدفاع الجوي</h4>
-                        <p class="text-gray-600 text-sm">مشروع توريد وإعاشة منسوبي قوات الدفاع الجوي.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-primary-600 hover:bg-white hover:shadow-lg transition-all">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">أمن الحج والعمرة</h4>
-                        <p class="text-gray-600 text-sm">مشروع إعاشة القوات الخاصة لأمن الحج والعمرة.</p>
-                    </div>
-                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-secondary-600 hover:bg-white hover:shadow-lg transition-all">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">المستشفيات الحكومية والخاصة</h4>
-                        <p class="text-gray-600 text-sm">مشروع تغذية المستشفيات وفق أعلى المعايير الصحية.</p>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <!-- Clients Section -->
+        <section class="py-20 bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">عملاؤنا</h2>
+                    <h3 class="text-4xl font-bold text-gray-900">شركاء النجاح</h3>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">نفخر بخدمة أبرز المؤسسات الحكومية والعسكرية في المملكة</p>
+                </div>
+
+                <!-- Scrolling Logos Container -->
+                <div class="relative">
+                    <div class="logos-slide flex gap-12 items-center">
+                        @foreach($clients as $client)
+                            <div class="flex-shrink-0 w-32 h-24 bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+                                <img src="{{ asset($client->logo) }}" width="120" height="120" alt="{{ $client->name }}" class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
+                            </div>
+                        @endforeach
+                        <!-- Duplicate for seamless loop -->
+                        @foreach($clients as $client)
+                            <div class="flex-shrink-0 w-32 h-24 bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
+                                <img src="{{ asset($client->logo) }}" width="120" height="120" alt="{{ $client->name }}" class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </section>
+
+        <style>
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            .logos-slide {
+                animation: scroll 30s linear infinite;
+            }
+
+            .logos-slide:hover {
+                animation-play-state: paused;
+            }
+        </style>
 
         <!-- CTA Section -->
         <section class="py-20 bg-primary-700 relative overflow-hidden">
@@ -332,11 +311,11 @@
                         <ul class="space-y-4">
                             <li class="flex items-center gap-3">
                                 <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <span class="text-gray-400">الرياض، المملكة العربية السعودية</span>
+                                <span class="text-gray-400">{{ $settings->get('contact_address', 'الرياض، المملكة العربية السعودية') }}</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                <span class="text-gray-400">info@sawaedalriyadh.com</span>
+                                <span class="text-gray-400">{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}</span>
                             </li>
                         </ul>
                     </div>
