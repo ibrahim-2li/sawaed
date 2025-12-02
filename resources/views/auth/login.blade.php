@@ -71,7 +71,7 @@
         <div class="relative z-10 text-center px-10">
             <div class="mb-8 relative inline-block">
                 <div class="absolute inset-0 bg-white/20 blur-2xl rounded-full"></div>
-                <img src="{{ asset('images/logo.png') }}" alt="Sawaed Logo" class="h-40 w-auto mx-auto relative brightness-0 invert drop-shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                <img src="{{ asset('images/logo.png') }}" alt="Sawaed Logo" class="h-40 w-auto mx-auto">
             </div>
             <h1 class="text-5xl font-extrabold text-white mb-6 tracking-tight">سواعد الرياض</h1>
             <p class="text-primary-100 text-xl max-w-md mx-auto leading-relaxed font-light">
@@ -91,7 +91,8 @@
          
          <div class="w-full max-w-md relative z-10 bg-white/80 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none p-8 lg:p-0 rounded-3xl lg:rounded-none shadow-2xl lg:shadow-none border border-white/50 lg:border-none">
             <div class="text-center mb-10 lg:hidden">
-                <img src="{{ asset('images/logo.png') }}" alt="Sawaed Logo" class="h-24 w-auto mx-auto mb-4 drop-shadow-lg">
+                <img src="{{ asset('images/logo.png') }}" alt="Sawaed Logo" class="h-40 w-auto mx-auto mb-4 drop-shadow-lg">
+
                 <h2 class="text-2xl font-bold text-gray-900">سواعد الرياض</h2>
             </div>
             
