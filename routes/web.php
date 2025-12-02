@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Project;
 use App\Models\Setting;
 use App\Models\Client;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     $services = Service::all();
@@ -16,7 +17,15 @@ Route::get('/', function () {
     return view('welcome', compact('services', 'projects', 'clients', 'settings'));
 })->name('home');
 
-Route::prefix('dashboard')->group(function () {
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/settings', [DashboardController::class, 'updateSettings'])->name('dashboard.settings.update');
     

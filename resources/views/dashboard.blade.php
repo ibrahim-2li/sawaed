@@ -51,6 +51,10 @@
                 </div>
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">عرض الموقع</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">تسجيل الخروج</button>
+                    </form>
                 </div>
             </div>
         </div>
