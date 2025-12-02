@@ -243,7 +243,7 @@
                                         </div>
                                         <div class="sm:col-span-6">
                                             <label class="block text-sm font-medium text-gray-700">الوصف</label>
-                                            <textarea name="description" rows="3" required class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2 border">{{ $service->description }}</textarea>
+                                            <textarea name="description" rows="3" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2 border">{{ $service->description }}</textarea>
                                         </div>
                                         <div class="sm:col-span-6">
                                             <label class="block text-sm font-medium text-gray-700">صورة الخدمة</label>

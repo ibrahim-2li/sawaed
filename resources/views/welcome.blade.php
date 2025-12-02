@@ -101,7 +101,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
                     <span class="block">{{ $settings->get('hero_title', 'الريادة في خدمات') }}</span>
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-white to-secondary-500">
+                    <span class="bg-clip-text text-primary-500 bg-gradient-to-r ">
                         {{ $settings->get('hero_subtitle', 'الإعاشة والخدمات اللوجستية') }}
                     </span>
                 </h1>
