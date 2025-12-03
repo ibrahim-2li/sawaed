@@ -69,14 +69,17 @@
                 <div class="flex justify-between items-center h-24">
                     <div class="flex-shrink-0 flex items-center">
                         <a href="#" class="flex items-center gap-3">
-                            <img src="{{ asset('images/logo.png') }}" alt="Sawaed Al Riyadh Logo" class="h-20 w-auto">
+                            <img src="{{ asset('images/home_icon.png') }}" alt="Sawaed Al Riyadh Logo" class="h-20 w-auto">
+                            <span class="text-primary-600 font-bold text-2xl">شركة سواعد الرياض المحدودة</span>
                         </a>
                     </div>
                     <div class="hidden md:flex space-x-8 space-x-reverse">
                         <a href="#home" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">الرئيسية</a>
                         <a href="#about" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">عن الشركة</a>
                         <a href="#services" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">خدماتنا</a>
-                        <a href="#projects" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">مشاريعنا</a>
+                        @if ($projects->count() > 0)
+                            <a href="#projects" class="text-gray-700 hover:text-primary-600 px-6 py-2 rounded-md text-sm font-medium transition-colors">مشاريعنا</a>
+                        @endif
                         <a href="#contact" class="bg-primary-600 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-600/30">تواصل معنا</a>
                     </div>
                     <!-- Mobile menu button -->
@@ -232,50 +235,57 @@
 
         <!-- Clients Section -->
         <section class="py-20 bg-white overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <!-- <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">عملاؤنا</h2> -->
-                    <h3 class="text-4xl font-bold text-gray-900"> عملاؤنا</h3>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">نفخر بخدمة أبرز المؤسسات الحكومية والعسكرية في المملكة</p>
-                </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h3 class="text-4xl font-bold text-gray-900">عملاؤنا</h3>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                نفخر بخدمة أبرز المؤسسات الحكومية والعسكرية في المملكة
+            </p>
+        </div>
 
-                <!-- Scrolling Logos Container -->
-                <div class="relative overflow-hidden">
-                    <div class="logos-slide flex gap-6 items-center animate-scroll">
-                        @foreach($clients as $client)
-                            <div class="flex-shrink-0 w-42 h-34 hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
-                                <img src="{{ asset($client->logo) }}" width="140" height="140" alt="{{ $client->name }}" class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
-                            </div>
-                        @endforeach
-                        <!-- Duplicate for seamless loop -->
-                        @foreach($clients as $client)
-                            <div class="flex-shrink-0 w-42 h-34 hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
-                                <img src="{{ asset($client->logo) }}" width="140" height="140" alt="{{ $client->name }}" class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
-                            </div>
-                        @endforeach
+        <!-- Scrolling Logos Container -->
+        <div class="logos relative overflow-hidden bg-white py-10" dir="ltr">
+            <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+            <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+            
+            <div class="logos-slide flex items-center">
+                <!-- Set 1 -->
+                @foreach($clients as $client)
+                    <div class="flex-shrink-0 w-[200px] h-[120px] mx-6 hover:scale-110 transition-transform duration-300 flex items-center justify-center group">
+                        <img src="{{ asset($client->logo) }}" alt="{{ $client->name }}" class="max-w-[160px] max-h-[100px] object-contain group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100">
                     </div>
-                </div>
+                @endforeach
+                <!-- Set 2 -->
+                @foreach($clients as $client)
+                    <div class="flex-shrink-0 w-[200px] h-[120px] mx-6 hover:scale-110 transition-transform duration-300 flex items-center justify-center group">
+                        <img src="{{ asset($client->logo) }}" alt="{{ $client->name }}" class="max-w-[160px] max-h-[100px] object-contain  group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100">
+                    </div>
+                @endforeach
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <style>
-            @keyframes scroll {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(-100%);
-                }
-            }
+<style>
+    .logos-slide {
+        display: flex;
+        width: max-content;
+        animation: scroll 40s linear infinite;
+    }
 
-            .logos-slide {
-                animation: scroll 30s linear infinite;
-            }
+    .logos-slide:hover {
+        animation-play-state: paused;
+    }
 
-            .logos-slide:hover {
-                animation-play-state: paused;
-            }
-        </style>
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+</style>
 
         <!-- CTA Section -->
         <section class="py-20 bg-primary-700 relative overflow-hidden">
@@ -312,11 +322,81 @@
                         <h3 class="text-xl font-bold text-white mb-6">تواصل معنا</h3>
                         <ul class="space-y-4">
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <span class="text-gray-400">{{ $settings->get('contact_address', 'الرياض، المملكة العربية السعودية') }}</span>
+                                    <svg class="w-5 h-5 text-primary-500" 
+                                        viewBox="0 0 474.616 474.616" xml:space="preserve">
+                                    <circle style="fill:#284A9E;" cx="236.968" cy="236.967" r="236.967"/>
+                                    <path style="fill:#24488E;" d="M405.203,70.061c92.546,92.549,92.553,242.591,0,335.148c-92.542,92.542-242.595,92.542-335.144,0
+                                        L405.203,70.061z"/>
+                                    <path style="fill:#1E3F77;" d="M466.714,295.104L299.58,127.969l-33.957,33.953l-72.329-9.968l7.472,74.828l-35.199,35.199
+                                        l71.105,71.101l1.239,48.636l78.514,78.51C390.322,433.92,447.309,372.005,466.714,295.104z"/>
+                                    <path style="fill:#FFFFFF;" d="M329.061,173.941c-0.984-3.697-2.986-7.633-4.464-11.083c-17.732-42.589-56.456-57.859-87.73-57.859
+                                        c-41.863,0-87.973,28.067-94.128,85.934v11.82c0,0.494,0.168,4.92,0.415,7.139c3.45,27.577,25.205,56.886,41.455,84.46
+                                        c17.482,29.545,35.626,58.604,53.601,87.663c11.079-18.956,22.121-38.162,32.954-56.639c2.952-5.414,6.38-10.832,9.336-16.004
+                                        c1.964-3.442,5.729-6.892,7.45-10.092c17.482-32.011,45.62-64.269,45.62-96.033v-13.051
+                                        C333.57,186.749,329.308,174.685,329.061,173.941z M237.631,233.282c-12.307,0-25.773-6.155-32.423-23.147
+                                        c-0.992-2.705-0.913-8.123-0.913-8.617v-7.637c0-21.661,18.398-31.513,34.398-31.513c19.701,0,34.933,15.757,34.933,35.457
+                                        C273.63,217.529,257.331,233.282,237.631,233.282z"/>
+                                    </svg> 
+                               <span class="text-gray-400">{{ $settings->get('contact_address', 'الرياض، المملكة العربية السعودية') }}</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                               <svg class="w-5 h-5 text-primary-500"
+                                           viewBox="0 0 473.931 473.931" xml:space="preserve">
+                                       <circle style="fill:#4A86C5;" cx="236.966" cy="236.966" r="236.966"/>
+                                       <path style="fill:#3D80B2;" d="M404.518,69.383c92.541,92.549,92.549,242.59,0,335.138c-92.541,92.541-242.593,92.541-335.134,0
+                                           L404.518,69.383z"/>
+                                       <path style="fill:#4A86C5;" d="M462.646,309.275c0.868-2.713,1.658-5.456,2.432-8.206
+                                           C464.307,303.823,463.496,306.562,462.646,309.275z"/>
+                                       <g>
+                                           <polygon style="fill:#377CA5;" points="465.097,301.017 465.097,301.017 465.082,301.07 	"/>
+                                           <path style="fill:#377CA5;" d="M465.097,301.017L336.721,172.641l-29.204,29.204l-20.303-20.303l-16.946,16.946L171.032,99.25
+                                               l-6.155-2.346l-38.08,38.08l45.968,45.964l-44.998,44.995l43.943,43.943l-48.048,48.052L276.475,470.59
+                                               c87.984-14.78,159.5-77.993,186.175-161.311c0.849-2.716,1.658-5.452,2.432-8.206C465.082,301.055,465.09,301.032,465.097,301.017z
+                                               "/>
+                                       </g>
+                                       <path style="fill:#FFFFFF;" d="M358.565,230.459v87.883h-50.944v-81.997c0-20.595-7.375-34.656-25.811-34.656
+                                           c-14.084,0-22.458,9.474-26.147,18.634c-1.343,3.278-1.688,7.835-1.688,12.423v85.593H203.02c0,0,0.681-138.875,0-153.259h50.952
+                                           V186.8c-0.094,0.161-0.236,0.34-0.329,0.498h0.329V186.8c6.769-10.425,18.862-25.324,45.923-25.324
+                                           C333.432,161.479,358.565,183.384,358.565,230.459z M149.7,91.198c-17.429,0-28.838,11.439-28.838,26.473
+                                           c0,14.716,11.072,26.495,28.164,26.495h0.344c17.766,0,28.823-11.779,28.823-26.495C177.857,102.636,167.137,91.198,149.7,91.198z
+                                           M123.886,318.341h50.944V165.083h-50.944V318.341z"/>
+                                       </svg>
+                               <span class="text-gray-400"><a href="https://www.linkedin.com/company/{{ $settings->get('contact_linkedin', 'Sawaed-Alriyadh-ltd-co') }}" target="_blank">{{ $settings->get('contact_linkedin', 'Sawaed-Alriyadh-ltd-co') }}</a></span>
+                           </li>
+                            <li class="flex items-center gap-3">
+                                        <svg class="w-5 h-5 text-primary-500"
+                                            viewBox="0 0 64 64" xml:space="preserve">
+                                        <style type="text/css">
+                                            .st0{fill:#77B3D4;}
+                                            .st1{opacity:0.2;}
+                                            .st2{fill:#231F20;}
+                                            .st3{fill:#FFFFFF;}
+                                        </style>
+                                        <g id="Layer_1">
+                                            <g>
+                                                <circle class="st0" cx="32" cy="32" r="32"/>
+                                            </g>
+                                            <g class="st1">
+                                                <path class="st2" d="M32,12c-12.1,0-22,9.9-22,22s9.9,22,22,22c3.5,0,7-0.8,10.1-2.4c1-0.5,1.4-1.7,0.9-2.7s-1.7-1.4-2.7-0.9
+                                                    c-2.6,1.3-5.3,2-8.2,2c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18c0,3-0.8,6-2.2,8.6c-1.8-1.4-4.4-4.2-4.4-8.5v-8.8
+                                                    c0-1.1-0.9-2-2-2s-2,0.9-2,2v0.1c-2-1.7-4.6-2.8-7.4-2.8c-6.3,0-11.4,5.1-11.4,11.4S25.7,45.4,32,45.4c3.7,0,7-1.8,9.1-4.6
+                                                    c2.3,4.2,6.2,6.3,6.4,6.4c0.9,0.5,2,0.2,2.6-0.6c2.6-3.7,3.9-8,3.9-12.6C54,21.9,44.1,12,32,12z M32,41.4c-4.1,0-7.4-3.3-7.4-7.4
+                                                    c0-4.1,3.3-7.4,7.4-7.4s7.4,3.3,7.4,7.4C39.4,38.1,36.1,41.4,32,41.4z"/>
+                                            </g>
+                                            <g>
+                                                <path class="st3" d="M32,54c-12.1,0-22-9.9-22-22s9.9-22,22-22s22,9.9,22,22c0,4.5-1.4,8.9-3.9,12.6c-0.6,0.8-1.7,1.1-2.6,0.6
+                                                    c-0.3-0.2-8.1-4.2-8.1-13.1v-8.8c0-1.1,0.9-2,2-2c1.1,0,2,0.9,2,2v8.8c0,4.3,2.6,7.1,4.4,8.5C49.2,38,50,35,50,32
+                                                    c0-9.9-8.1-18-18-18s-18,8.1-18,18s8.1,18,18,18c2.9,0,5.7-0.7,8.2-2c1-0.5,2.2-0.1,2.7,0.9c0.5,1,0.1,2.2-0.9,2.7
+                                                    C39,53.2,35.5,54,32,54z"/>
+                                            </g>
+                                            <g>
+                                                <path class="st3" d="M32,24.6c4.1,0,7.4,3.3,7.4,7.4s-3.3,7.4-7.4,7.4s-7.4-3.3-7.4-7.4S27.9,24.6,32,24.6 M32,20.6
+                                                    c-6.3,0-11.4,5.1-11.4,11.4S25.7,43.4,32,43.4S43.4,38.3,43.4,32S38.3,20.6,32,20.6L32,20.6z"/>
+                                            </g>
+                                        </g>
+                                        <g id="Layer_2">
+                                        </g>
+                                        </svg>
                                 <span class="text-gray-400">{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}</span>
                             </li>
                         </ul>
