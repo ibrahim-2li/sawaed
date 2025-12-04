@@ -205,7 +205,7 @@ class DashboardController extends Controller
 
         Contact::create($validated);
 
-        return redirect()->back()->with('success', 'شكراً لتواصلك معنا! سنرد عليك في أقرب وقت ممكن.');
+        return redirect()->route('home')->with('success', 'شكراً لتواصلك معنا! سنرد عليك في أقرب وقت ممكن.')->withFragment('contact');
     }
 
     public function toggleReadContact(Contact $contact)
