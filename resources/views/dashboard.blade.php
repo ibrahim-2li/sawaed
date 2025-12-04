@@ -163,6 +163,10 @@
                         <label for="contact_linkedin" class="block text-sm font-medium text-gray-700">لينكد إن</label>
                         <input type="text" name="contact_linkedin" id="contact_linkedin" value="{{ $settings->get('contact_linkedin') }}" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2 border">
                     </div>
+                    <div class="sm:col-span-3">
+                        <label for="contact_phone" class="block text-sm font-medium text-gray-700">رقم الهاتف</label>
+                        <input type="text" name="contact_phone" id="contact_phone" value="{{ $settings->get('contact_phone') }}" class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2 border">
+                    </div>
 
                 </div>
                 <div class="mt-6">
