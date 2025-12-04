@@ -62,21 +62,32 @@
         </style>
     </head>
     <body class="antialiased bg-gray-50 text-gray-800">
-        
         <!-- Navigation -->
-        <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <nav class="fixed w-full z-50 glass-nav transition-all duration-300" x-data="{ mobileMenuOpen: false }">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-24">
                     <div class="flex-shrink-0 flex items-center">
-                        <a href="#" class="flex items-center gap-3">
-                            <img src="{{ asset('images/home_icon.png') }}" alt="Sawaed Al Riyadh Logo" class="h-20 w-auto">
-                            <span class="text-primary-600 font-bold text-2xl">شركة سواعد الرياض المحدودة</span>
-                        </a>
+                       <a href="#" class="flex items-center gap-3">
+                                    <img src="{{ asset('images/home_icon.png') }}" 
+                                        alt="Sawaed Al Riyadh Logo" 
+                                        class="h-10 w-auto">
+
+                                    <!-- Mobile view only -->
+                                    <span class="block md:hidden text-primary-600 font-bold text-xl">
+                                        سواعد الرياض
+                                    </span>
+
+                                    <!-- Desktop view only -->
+                                    <span class="hidden md:block text-primary-600 font-bold text-2xl">
+                                        شركة سواعد الرياض المحدودة
+                                    </span>
+                                </a>
                     </div>
                     <div class="hidden md:flex space-x-8 space-x-reverse">
                         <a href="#home" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">الرئيسية</a>
                         <a href="#about" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">عن الشركة</a>
                         <a href="#services" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">خدماتنا</a>
+                        <a href="#clients" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">عملاؤنا</a>
                         @if ($projects->count() > 0)
                             <a href="#projects" class="text-gray-700 hover:text-primary-600 px-6 py-2 rounded-md text-sm font-medium transition-colors">مشاريعنا</a>
                         @endif
@@ -84,13 +95,31 @@
                     </div>
                     <!-- Mobile menu button -->
                     <div class="md:hidden flex items-center">
-                        <button class="text-gray-700 hover:text-primary-600 focus:outline-none">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <button id="mobile-menu-btn" class="text-gray-700 hover:text-primary-600 focus:outline-none p-2">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
                     </div>
                 </div>
+            </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center space-y-8 h-screen w-screen top-0 right-0">
+                <button id="close-menu-btn" class="absolute top-8 left-8 text-gray-500 hover:text-secondary-600 transition-colors">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                
+                <a href="#home" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">الرئيسية</a>
+                <a href="#about" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">عن الشركة</a>
+                <a href="#services" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">خدماتنا</a>
+                <a href="#clients" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">عملاؤنا</a>
+                @if ($projects->count() > 0)
+                    <a href="#projects" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">مشاريعنا</a>
+                @endif
+                <a href="#contact" class="mobile-link px-10 py-4 bg-primary-600 text-white rounded-full text-xl font-bold shadow-xl hover:bg-primary-700 transition-all duration-500 ease-out transform hover:scale-105 opacity-0 translate-y-8">تواصل معنا</a>
             </div>
         </nav>
 
@@ -111,11 +140,11 @@
                 <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-300 mb-10">
                     {{ $settings->get('hero_description', 'نقدم حلولاً متكاملة في التموين الغذائي، تنظيم الفعاليات، والخدمات اللوجستية بمعايير عالمية وجودة لا تضاهى.') }}
                 </p>
-                <div class="flex justify-center gap-4">
-                    <a href="#services" class="px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-lg shadow-lg shadow-primary-600/30 hover:bg-primary-500 hover:scale-105 transition-all duration-300 border border-primary-500">
+                <div class="flex flex-col sm:flex-row justify-center gap-4 px-4">
+                    <a href="#services" class="w-full sm:w-auto px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-lg shadow-lg shadow-primary-600/30 hover:bg-primary-500 hover:scale-105 transition-all duration-300 border border-primary-500">
                         استكشف خدماتنا
                     </a>
-                    <a href="#contact" class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300 hover:border-secondary-500">
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300 hover:border-secondary-500">
                         اطلب عرض سعر
                     </a>
                 </div>
@@ -129,14 +158,14 @@
                     <div class="relative">
                         <div class="absolute -inset-4 bg-primary-100 rounded-2xl transform rotate-3"></div>
                         <img src="{{ asset($settings->get('about_image'))?:'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80' }}" alt="About Sawaed" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
-                        <div class="absolute -bottom-10 -left-10 bg-white p-6 rounded-xl shadow-xl max-w-xs hidden md:block border-t-4 border-secondary-600">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-primary-50 p-3 rounded-full text-primary-600">
-                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <div class="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 bg-white p-4 md:p-6 rounded-xl shadow-xl max-w-[180px] md:max-w-xs border-t-4 border-secondary-600 z-20">
+                            <div class="flex items-center gap-3 md:gap-4">
+                                <div class="bg-primary-50 p-2 md:p-3 rounded-full text-primary-600">
+                                    <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-gray-500">خبرة أكثر من</p>
-                                    <p class="text-2xl font-bold text-gray-900">33 سنة</p>
+                                    <p class="text-xs md:text-sm text-gray-500">خبرة أكثر من</p>
+                                    <p class="text-lg md:text-2xl font-bold text-gray-900">33 سنة</p>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +222,7 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             </div>
                         @endif
-                        <div class="p-8">
+                        <div class="p-6 md:p-8">
                             <div class="w-14 h-14 bg-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-50 rounded-xl flex items-center justify-center text-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-600 mb-6">
                                 @if($service->icon)
                                     {!! $service->icon !!}
@@ -234,7 +263,7 @@
         @endif
 
         <!-- Clients Section -->
-        <section class="py-20 bg-white overflow-hidden">
+        <section id="clients" class="py-20 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <h3 class="text-4xl font-bold text-gray-900">عملاؤنا</h3>
@@ -407,5 +436,43 @@
                 </div>
             </div>
         </footer>
+        <script>
+            // Mobile Menu Logic
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMenu() {
+                const isHidden = mobileMenu.classList.contains('translate-x-full');
+                if (isHidden) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                    
+                    // Animate links in
+                    mobileLinks.forEach((link, index) => {
+                        setTimeout(() => {
+                            link.classList.remove('opacity-0', 'translate-y-8');
+                        }, 150 + (index * 100));
+                    });
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    document.body.style.overflow = ''; // Enable scrolling
+                    
+                    // Reset links
+                    mobileLinks.forEach(link => {
+                        link.classList.add('opacity-0', 'translate-y-8');
+                    });
+                }
+            }
+
+            if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
+            if(closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMenu);
+            
+            // Close menu when clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        </script>
     </body>
 </html>
