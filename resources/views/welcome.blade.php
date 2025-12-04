@@ -61,7 +61,7 @@
             }
         </style>
     </head>
-    <body class="antialiased bg-gray-50 text-gray-800">
+    <body class="antialiased bg-gray-50 text-gray-800 overflow-x-hidden">
         <!-- Navigation -->
         <nav class="fixed w-full z-50 glass-nav transition-all duration-300" x-data="{ mobileMenuOpen: false }">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,7 +105,7 @@
             </div>
 
             <!-- Mobile Menu Overlay -->
-            <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center space-y-8 h-screen w-screen top-0 right-0">
+            <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center space-y-8 h-screen w-full top-0 right-0">
                 <button id="close-menu-btn" class="absolute top-8 left-8 text-gray-500 hover:text-secondary-600 transition-colors">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -152,7 +152,7 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 bg-white">
+        <section id="about" class="py-20 overflow-hidden bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div class="relative">
