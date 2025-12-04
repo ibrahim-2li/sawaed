@@ -426,7 +426,7 @@
                                         <g id="Layer_2">
                                         </g>
                                         </svg>
-                                <span class="text-gray-400">{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}</span>
+                                <span class="text-gray-400"><a href="mailto:{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}">{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}</a></span>
                             </li>
                             <li class="flex items-center gap-3">
                                         <svg class="w-5 h-5 text-primary-500"
@@ -460,8 +460,8 @@
                                                 </g>
                                                 <g id="Layer_2">
                                                 </g>
-</svg>
-                                <span class="text-gray-400">{{ $settings->get('contact_phone', '966114038104') }}</span>
+                                            </svg>
+                                <span class="text-gray-400"><a href="tel:+{{ $settings->get('contact_phone', '966114038104') }}">{{ $settings->get('contact_phone', '966114038104') }}</a></span>
                             </li>
                         </ul>
                     </div>
