@@ -60,7 +60,14 @@
         </div>
     </nav>
 
-    <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8" x-data="{ activeTab: 'settings' }">
+    <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8" x-data="{ 
+        activeTab: window.location.hash ? window.location.hash.substring(1) : 'settings',
+        init() {
+            this.$watch('activeTab', value => {
+                window.location.hash = value;
+            });
+        }
+    }">
         
         @if(session('success'))
             <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mb-6" role="alert">

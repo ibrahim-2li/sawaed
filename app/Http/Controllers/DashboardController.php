@@ -44,7 +44,7 @@ class DashboardController extends Controller
             );
         }
 
-        return redirect()->back()->with('success', 'Settings updated successfully.');
+        return redirect()->route('dashboard')->with('success', 'Settings updated successfully.')->withFragment('settings');
     }
 
     public function storeService(Request $request)
@@ -65,7 +65,7 @@ class DashboardController extends Controller
 
         Service::create($validated);
 
-        return redirect()->back()->with('success', 'Service created successfully.');
+        return redirect()->route('dashboard')->with('success', 'Service created successfully.')->withFragment('services');
     }
 
     public function updateService(Request $request, Service $service)
@@ -91,7 +91,7 @@ class DashboardController extends Controller
 
         $service->update($validated);
 
-        return redirect()->back()->with('success', 'Service updated successfully.');
+        return redirect()->route('dashboard')->with('success', 'Service updated successfully.')->withFragment('services');
     }
 
     public function destroyService(Service $service)
@@ -102,7 +102,7 @@ class DashboardController extends Controller
 
         $service->delete();
 
-        return redirect()->back()->with('success', 'Service deleted successfully.');
+        return redirect()->route('dashboard')->with('success', 'Service deleted successfully.')->withFragment('services');
     }
 
     public function storeProject(Request $request)
@@ -115,7 +115,7 @@ class DashboardController extends Controller
 
         Project::create($validated);
 
-        return redirect()->back()->with('success', 'Project created successfully.');
+        return redirect()->route('dashboard')->with('success', 'Project created successfully.')->withFragment('projects');
     }
 
     public function updateProject(Request $request, Project $project)
@@ -128,14 +128,14 @@ class DashboardController extends Controller
 
         $project->update($validated);
 
-        return redirect()->back()->with('success', 'Project updated successfully.');
+        return redirect()->route('dashboard')->with('success', 'Project updated successfully.')->withFragment('projects');
     }
 
     public function destroyProject(Project $project)
     {
         $project->delete();
 
-        return redirect()->back()->with('success', 'Project deleted successfully.');
+        return redirect()->route('dashboard')->with('success', 'Project deleted successfully.')->withFragment('projects');
     }
 
     public function storeClient(Request $request)
@@ -154,7 +154,7 @@ class DashboardController extends Controller
 
         Client::create($validated);
 
-        return redirect()->back()->with('success', 'Client created successfully.');
+        return redirect()->route('dashboard')->with('success', 'Client created successfully.')->withFragment('clients');
     }
 
     public function updateClient(Request $request, Client $client)
@@ -178,7 +178,7 @@ class DashboardController extends Controller
 
         $client->update($validated);
 
-        return redirect()->back()->with('success', 'Client updated successfully.');
+        return redirect()->route('dashboard')->with('success', 'Client updated successfully.')->withFragment('clients');
     }
 
     public function destroyClient(Client $client)
@@ -191,7 +191,7 @@ class DashboardController extends Controller
         $client->delete();
 
 
-        return redirect()->back()->with('success', 'Client deleted successfully.');
+        return redirect()->route('dashboard')->with('success', 'Client deleted successfully.')->withFragment('clients');
     }
 
     public function submitContact(Request $request)
@@ -211,12 +211,12 @@ class DashboardController extends Controller
     public function toggleReadContact(Contact $contact)
     {
         $contact->update(['is_read' => !$contact->is_read]);
-        return redirect()->back()->with('success', 'تم تحديث حالة الرسالة.');
+        return redirect()->route('dashboard')->with('success', 'تم تحديث حالة الرسالة.')->withFragment('messages');
     }
 
     public function destroyContact(Contact $contact)
     {
         $contact->delete();
-        return redirect()->back()->with('success', 'تم حذف الرسالة بنجاح.');
+        return redirect()->route('dashboard')->with('success', 'تم حذف الرسالة بنجاح.')->withFragment('messages');
     }
 }
