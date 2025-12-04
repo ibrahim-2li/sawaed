@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Client;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,9 +16,10 @@ class DashboardController extends Controller
         $services = Service::all();
         $projects = Project::all();
         $clients = Client::orderBy('order')->get();
+        $contacts = Contact::orderBy('created_at', 'desc')->get();
         $settings = Setting::all()->pluck('value', 'key');
 
-        return view('dashboard', compact('services', 'projects', 'clients', 'settings'));
+        return view('dashboard', compact('services', 'projects', 'clients', 'contacts', 'settings'));
     }
 
     public function updateSettings(Request $request)
@@ -188,6 +190,33 @@ class DashboardController extends Controller
         
         $client->delete();
 
+
         return redirect()->back()->with('success', 'Client deleted successfully.');
+    }
+
+    public function submitContact(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'message' => 'required|string|max:1000',
+        ]);
+
+        Contact::create($validated);
+
+        return redirect()->back()->with('success', 'شكراً لتواصلك معنا! سنرد عليك في أقرب وقت ممكن.');
+    }
+
+    public function toggleReadContact(Contact $contact)
+    {
+        $contact->update(['is_read' => !$contact->is_read]);
+        return redirect()->back()->with('success', 'تم تحديث حالة الرسالة.');
+    }
+
+    public function destroyContact(Contact $contact)
+    {
+        $contact->delete();
+        return redirect()->back()->with('success', 'تم حذف الرسالة بنجاح.');
     }
 }

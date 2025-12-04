@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome', compact('services', 'projects', 'clients', 'settings'));
 })->name('home');
 
+Route::post('/contact', [DashboardController::class, 'submitContact'])->name('contact.submit');
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -40,4 +42,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('/clients', [DashboardController::class, 'storeClient'])->name('dashboard.clients.store');
     Route::put('/clients/{client}', [DashboardController::class, 'updateClient'])->name('dashboard.clients.update');
     Route::delete('/clients/{client}', [DashboardController::class, 'destroyClient'])->name('dashboard.clients.destroy');
+
+    Route::put('/contacts/{contact}/toggle-read', [DashboardController::class, 'toggleReadContact'])->name('dashboard.contacts.toggle-read');
+    Route::delete('/contacts/{contact}', [DashboardController::class, 'destroyContact'])->name('dashboard.contacts.destroy');
 });
