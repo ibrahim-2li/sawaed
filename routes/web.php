@@ -7,14 +7,16 @@ use App\Models\Service;
 use App\Models\Project;
 use App\Models\Setting;
 use App\Models\Client;
+use App\Models\Brand;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     $services = Service::all();
     $projects = Project::all();
     $clients = Client::orderBy('order')->get();
+    $brands = Brand::orderBy('order')->get();
     $settings = Setting::all()->pluck('value', 'key');
-    return view('welcome', compact('services', 'projects', 'clients', 'settings'));
+    return view('welcome', compact('services', 'projects', 'clients', 'brands', 'settings'));
 })->name('home');
 
 Route::post('/contact', [DashboardController::class, 'submitContact'])->name('contact.submit');
@@ -42,6 +44,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('/clients', [DashboardController::class, 'storeClient'])->name('dashboard.clients.store');
     Route::put('/clients/{client}', [DashboardController::class, 'updateClient'])->name('dashboard.clients.update');
     Route::delete('/clients/{client}', [DashboardController::class, 'destroyClient'])->name('dashboard.clients.destroy');
+
+    Route::post('/brands', [DashboardController::class, 'storeBrand'])->name('dashboard.brands.store');
+    Route::put('/brands/{brand}', [DashboardController::class, 'updateBrand'])->name('dashboard.brands.update');
+    Route::delete('/brands/{brand}', [DashboardController::class, 'destroyBrand'])->name('dashboard.brands.destroy');
 
     Route::put('/contacts/{contact}/toggle-read', [DashboardController::class, 'toggleReadContact'])->name('dashboard.contacts.toggle-read');
     Route::delete('/contacts/{contact}', [DashboardController::class, 'destroyContact'])->name('dashboard.contacts.destroy');

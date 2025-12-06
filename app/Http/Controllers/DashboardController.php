@@ -1,11 +1,13 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Client;
+use App\Models\Brand;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -16,10 +18,11 @@ class DashboardController extends Controller
         $services = Service::all();
         $projects = Project::all();
         $clients = Client::orderBy('order')->get();
+        $brands = Brand::orderBy('order')->get();
         $contacts = Contact::orderBy('created_at', 'desc')->get();
         $settings = Setting::all()->pluck('value', 'key');
 
-        return view('dashboard', compact('services', 'projects', 'clients', 'contacts', 'settings'));
+        return view('dashboard', compact('services', 'projects', 'clients', 'brands', 'contacts', 'settings'));
     }
 
     public function updateSettings(Request $request)
@@ -214,9 +217,65 @@ class DashboardController extends Controller
         return redirect()->route('dashboard')->with('success', 'تم تحديث حالة الرسالة.')->withFragment('messages');
     }
 
+
     public function destroyContact(Contact $contact)
     {
         $contact->delete();
         return redirect()->route('dashboard')->with('success', 'تم حذف الرسالة بنجاح.')->withFragment('messages');
+    }
+
+    public function storeBrand(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'order' => 'nullable|integer',
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $logoName = time() . '_' . $request->file('logo')->getClientOriginalName();
+            $request->file('logo')->move(public_path('images/brands'), $logoName);
+            $validated['logo'] = 'images/brands/' . $logoName;
+        }
+
+        Brand::create($validated);
+
+        return redirect()->route('dashboard')->with('success', 'Brand created successfully.')->withFragment('brands');
+    }
+
+    public function updateBrand(Request $request, Brand $brand)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'order' => 'nullable|integer',
+        ]);
+
+        if ($request->hasFile('logo')) {
+            // Delete old logo if exists
+            if ($brand->logo && file_exists(public_path($brand->logo))) {
+                unlink(public_path($brand->logo));
+            }
+            
+            $logoName = time() . '_' . $request->file('logo')->getClientOriginalName();
+            $request->file('logo')->move(public_path('images/brands'), $logoName);
+            $validated['logo'] = 'images/brands/' . $logoName;
+        }
+
+        $brand->update($validated);
+
+        return redirect()->route('dashboard')->with('success', 'Brand updated successfully.')->withFragment('brands');
+    }
+
+    public function destroyBrand(Brand $brand)
+    {
+        // Delete logo file
+        if ($brand->logo && file_exists(public_path($brand->logo))) {
+            unlink(public_path($brand->logo));
+        }
+        
+        $brand->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Brand deleted successfully.')->withFragment('brands');
     }
 }

@@ -1,233 +1,319 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>شركة سواعد الرياض | Sawaed Al Riyadh</title>
-        
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
-        <!-- Styles / Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
-            <script src="https://cdn.tailwindcss.com"></script>
-            <script>
-                tailwind.config = {
-                    theme: {
-                        extend: {
-                            fontFamily: {
-                                sans: ['Tajawal', 'sans-serif'],
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>شركة سواعد الرياض | Sawaed Al Riyadh</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles / Scripts -->
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['Tajawal', 'sans-serif'],
+                        },
+                        colors: {
+                            primary: {
+                                50: '#f0f5ff',
+                                100: '#e0ebff',
+                                500: '#3b82f6',
+                                600: '#01349b',
+                                700: '#05389eff',
+                                800: '#01205e',
+                                900: '#001030',
                             },
-                            colors: {
-                                primary: {
-                                    50: '#f0f5ff',
-                                    100: '#e0ebff',
-                                    500: '#3b82f6',
-                                    600: '#01349b',
-                                    700: '#05389eff',
-                                    800: '#01205e',
-                                    900: '#001030',
-                                },
-                                secondary: {
-                                    500: '#ef4444',
-                                    600: '#fe0000',
-                                    700: '#cc0000',
-                                    900: '#0f172a',
-                                }
+                            secondary: {
+                                500: '#ef4444',
+                                600: '#fe0000',
+                                700: '#cc0000',
+                                900: '#0f172a',
                             }
                         }
                     }
                 }
-            </script>
-        @endif
-        
-        <style>
-            body {
-                font-family: 'Tajawal', sans-serif;
             }
-            .glass-nav {
-                background: rgba(255, 255, 255, 0.9);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            }
-            .hero-pattern {
-                background-color: #0f172a;
-                background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2301349b' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            }
-        </style>
-    </head>
-    <body class="antialiased bg-gray-50 text-gray-800 overflow-x-hidden">
-        <!-- Navigation -->
-        <nav class="fixed w-full z-50 glass-nav transition-all duration-300" x-data="{ mobileMenuOpen: false }">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-24">
-                    <div class="flex-shrink-0 flex items-center">
-                       <a href="#" class="flex items-center gap-3">
-                                    <img src="{{ asset('images/home_icon.png') }}" 
-                                        alt="Sawaed Al Riyadh Logo" 
-                                        class="h-10 w-auto">
+        </script>
+    @endif
 
-                                    <!-- Mobile view only -->
-                                    <span class="block md:hidden text-primary-600 font-bold text-xl">
-                                        سواعد الرياض
-                                    </span>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
 
-                                    <!-- Desktop view only -->
-                                    <span class="hidden md:block text-primary-600 font-bold text-2xl">
-                                        شركة سواعد الرياض المحدودة
-                                    </span>
-                                </a>
-                    </div>
-                    <div class="hidden md:flex space-x-8 space-x-reverse">
-                        <a href="#home" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">الرئيسية</a>
-                        <a href="#about" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">عن الشركة</a>
-                        <a href="#services" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">خدماتنا</a>
-                        <a href="#clients" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">عملاؤنا</a>
-                        @if ($projects->count() > 0)
-                            <a href="#projects" class="text-gray-700 hover:text-primary-600 px-6 py-2 rounded-md text-sm font-medium transition-colors">مشاريعنا</a>
-                        @endif
-                        <a href="#contact" class="bg-primary-600 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-600/30">تواصل معنا</a>
-                    </div>
-                    <!-- Mobile menu button -->
-                    <div class="md:hidden flex items-center">
-                        <button id="mobile-menu-btn" class="text-gray-700 hover:text-primary-600 focus:outline-none p-2">
-                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
 
-            <!-- Mobile Menu Overlay -->
-            <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center space-y-8 h-screen w-full top-0 right-0">
-                <button id="close-menu-btn" class="absolute top-8 left-8 text-gray-500 hover:text-secondary-600 transition-colors">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-                
-                <a href="#home" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">الرئيسية</a>
-                <a href="#about" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">عن الشركة</a>
-                <a href="#services" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">خدماتنا</a>
-                <a href="#clients" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">عملاؤنا</a>
-                @if ($projects->count() > 0)
-                    <a href="#projects" class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">مشاريعنا</a>
-                @endif
-                <a href="#contact" class="mobile-link px-10 py-4 bg-primary-600 text-white rounded-full text-xl font-bold shadow-xl hover:bg-primary-700 transition-all duration-500 ease-out transform hover:scale-105 opacity-0 translate-y-8">تواصل معنا</a>
-            </div>
-        </nav>
+        .hero-pattern {
+            background-color: #0f172a;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2301349b' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
 
-        <!-- Hero Section -->
-        <section id="home" class="relative pt-36 pb-20 lg:pt-52 lg:pb-32 overflow-hidden hero-pattern">
-            <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary-600/20 blur-3xl"></div>
-                <div class="absolute top-[40%] -left-[10%] w-[40%] h-[40%] rounded-full bg-secondary-600/10 blur-3xl"></div>
-            </div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-                    <span class="block">{{ $settings->get('hero_title', 'الريادة في خدمات') }}</span>
-                    <span class="bg-clip-text text-primary-500 bg-gradient-to-r ">
-                        {{ $settings->get('hero_subtitle', 'الإعاشة والخدمات اللوجستية') }}
-                    </span>
-                </h1>
-                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-300 mb-10">
-                    {{ $settings->get('hero_description', 'نقدم حلولاً متكاملة في التموين الغذائي، تنظيم الفعاليات، والخدمات اللوجستية بمعايير عالمية وجودة لا تضاهى.') }}
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4 px-4">
-                    <a href="#services" class="w-full sm:w-auto px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-lg shadow-lg shadow-primary-600/30 hover:bg-primary-500 hover:scale-105 transition-all duration-300 border border-primary-500">
-                        استكشف خدماتنا
-                    </a>
-                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300 hover:border-secondary-500">
-                       تواصل معنا
+<body class="antialiased bg-gray-50 text-gray-800 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" x-data="{ mobileMenuOpen: false }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-3">
+                        <img src="{{ asset('images/home_icon.png') }}" alt="Sawaed Al Riyadh Logo" class="h-10 w-auto">
+
+                        <!-- Mobile view only -->
+                        <span class="block md:hidden text-primary-600 font-bold text-xl">
+                            سواعد الرياض
+                        </span>
+
+                        <!-- Desktop view only -->
+                        <span class="hidden md:block text-primary-600 font-bold text-2xl">
+                            شركة سواعد الرياض المحدودة
+                        </span>
                     </a>
                 </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="#home"
+                        class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">الرئيسية</a>
+                    <a href="#about"
+                        class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">عن
+                        الشركة</a>
+                    @if ($brands->count() > 0)
+                        <a href="#brands"
+                            class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">علاماتنا</a>
+                    @endif
+                    <a href="#services"
+                        class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">خدماتنا</a>
+                    <a href="#clients"
+                        class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">عملاؤنا</a>
+                    @if ($projects->count() > 0)
+                        <a href="#projects"
+                            class="text-gray-700 hover:text-primary-600 px-6 py-2 rounded-md text-sm font-medium transition-colors">مشاريعنا</a>
+                    @endif
+                    <a href="#contact"
+                        class="bg-primary-600 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-600/30">تواصل
+                        معنا</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-primary-600 focus:outline-none p-2">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <!-- About Section -->
-        <section id="about" class="py-20 overflow-hidden bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div class="relative">
-                        <div class="absolute -inset-4 bg-primary-100 rounded-2xl transform rotate-3"></div>
-                        <img src="{{ asset($settings->get('about_image'))?:'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80' }}" alt="About Sawaed" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
-                        <div class="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 bg-white p-4 md:p-6 rounded-xl shadow-xl max-w-[180px] md:max-w-xs border-t-4 border-secondary-600 z-20">
-                            <div class="flex items-center gap-3 md:gap-4">
-                                <div class="bg-primary-50 p-2 md:p-3 rounded-full text-primary-600">
-                                    <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                </div>
-                                <div>
-                                    <p class="text-xs md:text-sm text-gray-500">خبرة أكثر من</p>
-                                    <p class="text-lg md:text-2xl font-bold text-gray-900">33 سنة</p>
-                                </div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center space-y-8 h-screen w-full top-0 right-0">
+            <button id="close-menu-btn"
+                class="absolute top-8 left-8 text-gray-500 hover:text-secondary-600 transition-colors">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+
+            <a href="#home"
+                class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">الرئيسية</a>
+            <a href="#about"
+                class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">عن
+                الشركة</a>
+            @if ($brands->count() > 0)
+                <a href="#brands"
+                    class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">علاماتنا</a>
+            @endif
+            <a href="#services"
+                class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">خدماتنا</a>
+            <a href="#clients"
+                class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">عملاؤنا</a>
+            @if ($projects->count() > 0)
+                <a href="#projects"
+                    class="mobile-link text-2xl font-bold text-gray-800 hover:text-primary-600 transition-all duration-500 ease-out opacity-0 translate-y-8">مشاريعنا</a>
+            @endif
+            <a href="#contact"
+                class="mobile-link px-10 py-4 bg-primary-600 text-white rounded-full text-xl font-bold shadow-xl hover:bg-primary-700 transition-all duration-500 ease-out transform hover:scale-105 opacity-0 translate-y-8">تواصل
+                معنا</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-36 pb-20 lg:pt-52 lg:pb-32 overflow-hidden hero-pattern">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary-600/20 blur-3xl"></div>
+            <div class="absolute top-[40%] -left-[10%] w-[40%] h-[40%] rounded-full bg-secondary-600/10 blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+                <span class="block">{{ $settings->get('hero_title', 'الريادة في خدمات') }}</span>
+                <span class="bg-clip-text text-primary-500 bg-gradient-to-r ">
+                    {{ $settings->get('hero_subtitle', 'الإعاشة والخدمات اللوجستية') }}
+                </span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-300 mb-10">
+                {{ $settings->get('hero_description', 'نقدم حلولاً متكاملة في التموين الغذائي، تنظيم الفعاليات، والخدمات اللوجستية بمعايير عالمية وجودة لا تضاهى.') }}
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 px-4">
+                <a href="#services"
+                    class="w-full sm:w-auto px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-lg shadow-lg shadow-primary-600/30 hover:bg-primary-500 hover:scale-105 transition-all duration-300 border border-primary-500">
+                    استكشف خدماتنا
+                </a>
+                <a href="#contact"
+                    class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300 hover:border-secondary-500">
+                    تواصل معنا
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 overflow-hidden bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-primary-100 rounded-2xl transform rotate-3"></div>
+                    <img src="{{ asset($settings->get('about_image')) ?: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80' }}"
+                        alt="About Sawaed" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
+                    <div
+                        class="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 bg-white p-4 md:p-6 rounded-xl shadow-xl max-w-[180px] md:max-w-xs border-t-4 border-secondary-600 z-20">
+                        <div class="flex items-center gap-3 md:gap-4">
+                            <div class="bg-primary-50 p-2 md:p-3 rounded-full text-primary-600">
+                                <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs md:text-sm text-gray-500">خبرة أكثر من</p>
+                                <p class="text-lg md:text-2xl font-bold text-gray-900">33 سنة</p>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">من نحن</h2>
-                        <h3 class="text-4xl font-bold text-gray-900 mb-6">{{ $settings->get('about_title', 'شريكك الاستراتيجي للنجاح والتميز') }}</h3>
-                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                            {{ $settings->get('about_description_1', 'قامت شركة سواعد الرياض بتنفيذ العديد من المشاريع داخل المملكة في مجموعة متنوعة من القطاعات، بما في ذلك قطاع الإعاشة، وسلاسل الإمداد الغذائي والتمويني، وقطاع الإنشاءات والتطوير العقاري.') }}
-                        </p>
-                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                            {{ $settings->get('about_description_2', 'نتميز بفريق استشاري وإداري وتنفيذي ذو خبرة احترافية عالية في تخطيط وتنظيم وإدارة الفعاليات والمؤتمرات. نلتزم بأعلى معايير الجودة والسلامة المهنية لضمان نجاح مشاريع عملائنا.') }}
-                        </p>
-                        
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="flex items-start gap-3">
-                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900">جودة عالية</h4>
-                                    <p class="text-sm text-gray-500 mt-1">التزام تام بمعايير الجودة العالمية</p>
-                                </div>
+                </div>
+                <div>
+                    <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">من نحن</h2>
+                    <h3 class="text-4xl font-bold text-gray-900 mb-6">
+                        {{ $settings->get('about_title', 'شريكك الاستراتيجي للنجاح والتميز') }}</h3>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        {{ $settings->get('about_description_1', 'قامت شركة سواعد الرياض بتنفيذ العديد من المشاريع داخل المملكة في مجموعة متنوعة من القطاعات، بما في ذلك قطاع الإعاشة، وسلاسل الإمداد الغذائي والتمويني، وقطاع الإنشاءات والتطوير العقاري.') }}
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        {{ $settings->get('about_description_2', 'نتميز بفريق استشاري وإداري وتنفيذي ذو خبرة احترافية عالية في تخطيط وتنظيم وإدارة الفعاليات والمؤتمرات. نلتزم بأعلى معايير الجودة والسلامة المهنية لضمان نجاح مشاريع عملائنا.') }}
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
                             </div>
-                            <div class="flex items-start gap-3">
-                                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary-50 flex items-center justify-center text-secondary-600">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900">سرعة التنفيذ</h4>
-                                    <p class="text-sm text-gray-500 mt-1">إنجاز المشاريع في الوقت المحدد</p>
-                                </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">جودة عالية</h4>
+                                <p class="text-sm text-gray-500 mt-1">التزام تام بمعايير الجودة العالمية</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary-50 flex items-center justify-center text-secondary-600">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">سرعة التنفيذ</h4>
+                                <p class="text-sm text-gray-500 mt-1">إنجاز المشاريع في الوقت المحدد</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Services Section -->
-        <section id="services" class="py-20 bg-gray-50">
+    <!-- Our Brands Section -->
+    @if ($brands->count() > 0)
+        <section id="brands" class="py-20 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">خدماتنا</h2>
-                    <h3 class="text-4xl font-bold text-gray-900">حلول متكاملة لاحتياجاتك</h3>
+                    <h2 class="text-primary-600 font-bold tracking-wide uppercase text-sm mb-2">علاماتنا التجارية</h2>
+                    <h3 class="text-4xl font-bold text-gray-900">علامات تستحق الثقة</h3>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                        نفخر بامتلاكنا لمجموعة متميزة من العلامات التجارية التي تخدم مختلف القطاعات
+                    </p>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    @foreach($services as $service)
-                    <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-600">
-                        @if($service->image)
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    @foreach ($brands as $brand)
+                        <div
+                            class="group bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-primary-600">
+                            <div
+                                class="aspect-square flex items-center justify-center mb-4 overflow-hidden rounded-lg bg-gray-50">
+                                <img src="{{ asset($brand->logo) }}" alt="{{ $brand->name }}"
+                                    class="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300">
+                            </div>
+                            <h4
+                                class="text-center text-lg font-bold text-gray-900 group-hover:text-primary-600 transition-colors">
+                                {{ $brand->name }}
+                            </h4>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">خدماتنا</h2>
+                <h3 class="text-4xl font-bold text-gray-900">حلول متكاملة لاحتياجاتك</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach ($services as $service)
+                    <div
+                        class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-600">
+                        @if ($service->image)
                             <div class="relative h-48 overflow-hidden">
-                                <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                                <img src="{{ asset($service->image) }}" alt="{{ $service->title }}"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             </div>
                         @endif
                         <div class="p-6 md:p-8">
-                            <div class="w-14 h-14 bg-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-50 rounded-xl flex items-center justify-center text-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-600 mb-6">
-                                @if($service->icon)
+                            <div
+                                class="w-14 h-14 bg-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-50 rounded-xl flex items-center justify-center text-{{ $service->color === 'primary' ? 'primary' : 'secondary' }}-600 mb-6">
+                                @if ($service->icon)
                                     {!! $service->icon !!}
                                 @else
-                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
                                 @endif
                             </div>
                             <h4 class="text-xl font-bold text-gray-900 mb-3">{{ $service->title }}</h4>
@@ -236,13 +322,13 @@
                             </p>
                         </div>
                     </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        @if($projects->count() > 0)
+    <!-- Projects Section -->
+    @if ($projects->count() > 0)
         <section id="projects" class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
@@ -251,403 +337,463 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    @foreach($projects as $project)
-                    <div class="bg-gray-50 p-6 rounded-xl border-r-4 border-{{ $project->color === 'primary' ? 'primary' : 'secondary' }}-600 hover:bg-white hover:shadow-lg transition-all">
-                        <h4 class="font-bold text-lg text-gray-900 mb-2">{{ $project->title }}</h4>
-                        <p class="text-gray-600 text-sm">{{ $project->description }}</p>
-                    </div>
+                    @foreach ($projects as $project)
+                        <div
+                            class="bg-gray-50 p-6 rounded-xl border-r-4 border-{{ $project->color === 'primary' ? 'primary' : 'secondary' }}-600 hover:bg-white hover:shadow-lg transition-all">
+                            <h4 class="font-bold text-lg text-gray-900 mb-2">{{ $project->title }}</h4>
+                            <p class="text-gray-600 text-sm">{{ $project->description }}</p>
+                        </div>
                     @endforeach
                 </div>
             </div>
         </section>
-        @endif
+    @endif
 
-        <!-- Clients Section -->
-        <section id="clients" class="py-20 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h3 class="text-4xl font-bold text-gray-900">عملاؤنا</h3>
-            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                نفخر بخدمة أبرز المؤسسات الحكومية والعسكرية في المملكة
-            </p>
-        </div>
-
-        <!-- Scrolling Logos Container -->
-        <div class="logos relative overflow-hidden bg-white py-10" dir="ltr">
-            <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-            <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
-            
-            <div class="logos-slide flex items-center">
-                <!-- Set 1 -->
-                @foreach($clients as $client)
-                    <div class="flex-shrink-0 w-[200px] h-[120px] mx-6 hover:scale-110 transition-transform duration-300 flex items-center justify-center group">
-                        <img src="{{ asset($client->logo) }}" alt="{{ $client->name }}" class="max-w-[160px] max-h-[100px] object-contain group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100">
-                    </div>
-                @endforeach
-                <!-- Set 2 -->
-                @foreach($clients as $client)
-                    <div class="flex-shrink-0 w-[200px] h-[120px] mx-6 hover:scale-110 transition-transform duration-300 flex items-center justify-center group">
-                        <img src="{{ asset($client->logo) }}" alt="{{ $client->name }}" class="max-w-[160px] max-h-[100px] object-contain  group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100">
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    .logos-slide {
-        display: flex;
-        width: max-content;
-        animation: scroll 40s linear infinite;
-    }
-
-    .logos-slide:hover {
-        animation-play-state: paused;
-    }
-
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-50%);
-        }
-    }
-</style>
-
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-5">
-                <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary-600 blur-3xl"></div>
-                <div class="absolute top-[40%] -left-[10%] w-[40%] h-[40%] rounded-full bg-secondary-600 blur-3xl"></div>
+    <!-- Clients Section -->
+    <section id="clients" class="py-20 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-900">عملاؤنا</h3>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    نفخر بخدمة أبرز المؤسسات الحكومية والعسكرية في المملكة
+                </p>
             </div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-16">
-                    <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">تواصل معنا</h2>
-                    <h3 class="text-4xl font-bold text-gray-900">نسعد بخدمتك</h3>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                        لديك استفسار أو تحتاج إلى عرض سعر؟ تواصل معنا الآن وسنرد عليك في أقرب وقت ممكن
+            <!-- Scrolling Logos Container -->
+            <div class="logos relative overflow-hidden bg-white py-10" dir="ltr">
+                <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+                <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+                <div class="logos-slide flex items-center">
+                    <!-- Set 1 -->
+                    @foreach ($clients as $client)
+                        <div
+                            class="flex-shrink-0 w-[200px] h-[120px] mx-6 hover:scale-110 transition-transform duration-300 flex items-center justify-center group">
+                            <img src="{{ asset($client->logo) }}" alt="{{ $client->name }}"
+                                class="max-w-[160px] max-h-[100px] object-contain group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100">
+                        </div>
+                    @endforeach
+                    <!-- Set 2 -->
+                    @foreach ($clients as $client)
+                        <div
+                            class="flex-shrink-0 w-[200px] h-[120px] mx-6 hover:scale-110 transition-transform duration-300 flex items-center justify-center group">
+                            <img src="{{ asset($client->logo) }}" alt="{{ $client->name }}"
+                                class="max-w-[160px] max-h-[100px] object-contain  group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100">
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .logos-slide {
+            display: flex;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+
+        .logos-slide:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-5">
+            <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary-600 blur-3xl"></div>
+            <div class="absolute top-[40%] -left-[10%] w-[40%] h-[40%] rounded-full bg-secondary-600 blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">تواصل معنا</h2>
+                <h3 class="text-4xl font-bold text-gray-900">نسعد بخدمتك</h3>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    لديك استفسار أو تحتاج إلى عرض سعر؟ تواصل معنا الآن وسنرد عليك في أقرب وقت ممكن
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-10 border-t-4 border-primary-600">
+                    @if (session('success'))
+                        <div class="mb-6 p-4 bg-green-50 border-r-4 border-green-500 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <p class="text-green-700 font-medium">{{ session('success') }}</p>
+                            </div>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
+                        @csrf
+
+                        <div>
+                            <label for="name" class="block text-sm font-bold text-gray-700 mb-2">الاسم الكامل
+                                *</label>
+                            <input type="text" id="name" name="name" required
+                                value="{{ old('name') }}"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all @error('name') border-red-500 @enderror"
+                                placeholder="أدخل اسمك الكامل">
+                            @error('name')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="email" class="block text-sm font-bold text-gray-700 mb-2">البريد
+                                    الإلكتروني *</label>
+                                <input type="email" id="email" name="email" required
+                                    value="{{ old('email') }}"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all @error('email') border-red-500 @enderror"
+                                    placeholder="example@email.com">
+                                @error('email')
+                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <label for="phone" class="block text-sm font-bold text-gray-700 mb-2">رقم
+                                    الهاتف</label>
+                                <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all @error('phone') border-red-500 @enderror"
+                                    placeholder="05xxxxxxxx">
+                                @error('phone')
+                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-bold text-gray-700 mb-2">الرسالة *</label>
+                            <textarea id="message" name="message" rows="5" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all resize-none @error('message') border-red-500 @enderror"
+                                placeholder="اكتب رسالتك هنا...">{{ old('message') }}</textarea>
+                            @error('message')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-primary-600 text-white font-bold py-4 px-8 rounded-full hover:bg-primary-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-primary-600/30 flex items-center justify-center gap-2">
+                            <span>إرسال الرسالة</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div
+                        class="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-8 md:p-10 text-white shadow-2xl">
+                        <h4 class="text-2xl font-bold mb-6">معلومات التواصل</h4>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold mb-1">العنوان</h5>
+                                    <p class="text-primary-100">
+                                        {{ $settings->get('contact_address', 'الرياض، المملكة العربية السعودية') }}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
+                                        </path>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold mb-1">البريد الإلكتروني</h5>
+                                    <a href="mailto:{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}"
+                                        class="text-primary-100 hover:text-white transition-colors">
+                                        {{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold mb-1">رقم الهاتف</h5>
+                                    <a href="tel:+{{ $settings->get('contact_phone', '966114038104') }}"
+                                        class="text-primary-100 hover:text-white transition-colors">
+                                        {{ $settings->get('contact_phone', '966114038104') }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-8 border-r-4 border-secondary-600">
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">ساعات العمل</h4>
+                        <div class="space-y-3 text-gray-600">
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="font-medium">الأحد - الخميس</span>
+                                <span class="font-bold text-gray-900">8:00 ص - 5:00 م</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">الجمعة - السبت</span>
+                                <span class="font-bold text-secondary-600">مغلق</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-6">سواعد الرياض</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        شركة رائدة في مجال الإعاشة والتموين والخدمات اللوجستية، نسعى دائماً لتقديم الأفضل لعملائنا من
+                        خلال الجودة والالتزام.
                     </p>
                 </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <!-- Contact Form -->
-                    <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-10 border-t-4 border-primary-600">
-                        @if(session('success'))
-                            <div class="mb-6 p-4 bg-green-50 border-r-4 border-green-500 rounded-lg">
-                                <div class="flex items-center gap-3">
-                                    <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    <p class="text-green-700 font-medium">{{ session('success') }}</p>
-                                </div>
-                            </div>
-                        @endif
-
-                        <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
-                            @csrf
-                            
-                            <div>
-                                <label for="name" class="block text-sm font-bold text-gray-700 mb-2">الاسم الكامل *</label>
-                                <input type="text" id="name" name="name" required value="{{ old('name') }}"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all @error('name') border-red-500 @enderror"
-                                    placeholder="أدخل اسمك الكامل">
-                                @error('name')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="email" class="block text-sm font-bold text-gray-700 mb-2">البريد الإلكتروني *</label>
-                                    <input type="email" id="email" name="email" required value="{{ old('email') }}"
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all @error('email') border-red-500 @enderror"
-                                        placeholder="example@email.com">
-                                    @error('email')
-                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <div>
-                                    <label for="phone" class="block text-sm font-bold text-gray-700 mb-2">رقم الهاتف</label>
-                                    <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all @error('phone') border-red-500 @enderror"
-                                        placeholder="05xxxxxxxx">
-                                    @error('phone')
-                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="message" class="block text-sm font-bold text-gray-700 mb-2">الرسالة *</label>
-                                <textarea id="message" name="message" rows="5" required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all resize-none @error('message') border-red-500 @enderror"
-                                    placeholder="اكتب رسالتك هنا...">{{ old('message') }}</textarea>
-                                @error('message')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <button type="submit" 
-                                class="w-full bg-primary-600 text-white font-bold py-4 px-8 rounded-full hover:bg-primary-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-primary-600/30 flex items-center justify-center gap-2">
-                                <span>إرسال الرسالة</span>
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                </svg>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Contact Info -->
-                    <div class="space-y-8">
-                        <div class="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-8 md:p-10 text-white shadow-2xl">
-                            <h4 class="text-2xl font-bold mb-6">معلومات التواصل</h4>
-                            <div class="space-y-6">
-                                <div class="flex items-start gap-4">
-                                    <div class="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h5 class="font-bold mb-1">العنوان</h5>
-                                        <p class="text-primary-100">{{ $settings->get('contact_address', 'الرياض، المملكة العربية السعودية') }}</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-start gap-4">
-                                    <div class="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h5 class="font-bold mb-1">البريد الإلكتروني</h5>
-                                        <a href="mailto:{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}" class="text-primary-100 hover:text-white transition-colors">
-                                            {{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-start gap-4">
-                                    <div class="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h5 class="font-bold mb-1">رقم الهاتف</h5>
-                                        <a href="tel:+{{ $settings->get('contact_phone', '966114038104') }}" class="text-primary-100 hover:text-white transition-colors">
-                                            {{ $settings->get('contact_phone', '966114038104') }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-2xl shadow-lg p-8 border-r-4 border-secondary-600">
-                            <h4 class="text-xl font-bold text-gray-900 mb-4">ساعات العمل</h4>
-                            <div class="space-y-3 text-gray-600">
-                                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
-                                    <span class="font-medium">الأحد - الخميس</span>
-                                    <span class="font-bold text-gray-900">8:00 ص - 5:00 م</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="font-medium">الجمعة - السبت</span>
-                                    <span class="font-bold text-secondary-600">مغلق</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6">روابط سريعة</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">الرئيسية</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-primary-400 transition-colors">عن
+                                الشركة</a></li>
+                        <li><a href="#services"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">خدماتنا</a></li>
+                        <li><a href="#projects"
+                                class="text-gray-400 hover:text-primary-400 transition-colors">مشاريعنا</a></li>
+                    </ul>
                 </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-gray-900 text-white py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-6">سواعد الرياض</h3>
-                        <p class="text-gray-400 leading-relaxed">
-                            شركة رائدة في مجال الإعاشة والتموين والخدمات اللوجستية، نسعى دائماً لتقديم الأفضل لعملائنا من خلال الجودة والالتزام.
-                        </p>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-6">روابط سريعة</h3>
-                        <ul class="space-y-3">
-                            <li><a href="#home" class="text-gray-400 hover:text-primary-400 transition-colors">الرئيسية</a></li>
-                            <li><a href="#about" class="text-gray-400 hover:text-primary-400 transition-colors">عن الشركة</a></li>
-                            <li><a href="#services" class="text-gray-400 hover:text-primary-400 transition-colors">خدماتنا</a></li>
-                            <li><a href="#projects" class="text-gray-400 hover:text-primary-400 transition-colors">مشاريعنا</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-6">تواصل معنا</h3>
-                        <ul class="space-y-4">
-                            <li class="flex items-center gap-3">
-                                    <svg class="w-5 h-5 text-primary-500" 
-                                        viewBox="0 0 474.616 474.616" xml:space="preserve">
-                                    <circle style="fill:#284A9E;" cx="236.968" cy="236.967" r="236.967"/>
-                                    <path style="fill:#24488E;" d="M405.203,70.061c92.546,92.549,92.553,242.591,0,335.148c-92.542,92.542-242.595,92.542-335.144,0
-                                        L405.203,70.061z"/>
-                                    <path style="fill:#1E3F77;" d="M466.714,295.104L299.58,127.969l-33.957,33.953l-72.329-9.968l7.472,74.828l-35.199,35.199
-                                        l71.105,71.101l1.239,48.636l78.514,78.51C390.322,433.92,447.309,372.005,466.714,295.104z"/>
-                                    <path style="fill:#FFFFFF;" d="M329.061,173.941c-0.984-3.697-2.986-7.633-4.464-11.083c-17.732-42.589-56.456-57.859-87.73-57.859
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-6">تواصل معنا</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-primary-500" viewBox="0 0 474.616 474.616" xml:space="preserve">
+                                <circle style="fill:#284A9E;" cx="236.968" cy="236.967" r="236.967" />
+                                <path style="fill:#24488E;" d="M405.203,70.061c92.546,92.549,92.553,242.591,0,335.148c-92.542,92.542-242.595,92.542-335.144,0
+                                        L405.203,70.061z" />
+                                <path style="fill:#1E3F77;"
+                                    d="M466.714,295.104L299.58,127.969l-33.957,33.953l-72.329-9.968l7.472,74.828l-35.199,35.199
+                                        l71.105,71.101l1.239,48.636l78.514,78.51C390.322,433.92,447.309,372.005,466.714,295.104z" />
+                                <path style="fill:#FFFFFF;" d="M329.061,173.941c-0.984-3.697-2.986-7.633-4.464-11.083c-17.732-42.589-56.456-57.859-87.73-57.859
                                         c-41.863,0-87.973,28.067-94.128,85.934v11.82c0,0.494,0.168,4.92,0.415,7.139c3.45,27.577,25.205,56.886,41.455,84.46
                                         c17.482,29.545,35.626,58.604,53.601,87.663c11.079-18.956,22.121-38.162,32.954-56.639c2.952-5.414,6.38-10.832,9.336-16.004
                                         c1.964-3.442,5.729-6.892,7.45-10.092c17.482-32.011,45.62-64.269,45.62-96.033v-13.051
                                         C333.57,186.749,329.308,174.685,329.061,173.941z M237.631,233.282c-12.307,0-25.773-6.155-32.423-23.147
                                         c-0.992-2.705-0.913-8.123-0.913-8.617v-7.637c0-21.661,18.398-31.513,34.398-31.513c19.701,0,34.933,15.757,34.933,35.457
-                                        C273.63,217.529,257.331,233.282,237.631,233.282z"/>
-                                    </svg> 
-                               <span class="text-gray-400">{{ $settings->get('contact_address', 'الرياض، المملكة العربية السعودية') }}</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                               <svg class="w-5 h-5 text-primary-500"
-                                           viewBox="0 0 473.931 473.931" xml:space="preserve">
-                                       <circle style="fill:#4A86C5;" cx="236.966" cy="236.966" r="236.966"/>
-                                       <path style="fill:#3D80B2;" d="M404.518,69.383c92.541,92.549,92.549,242.59,0,335.138c-92.541,92.541-242.593,92.541-335.134,0
-                                           L404.518,69.383z"/>
-                                       <path style="fill:#4A86C5;" d="M462.646,309.275c0.868-2.713,1.658-5.456,2.432-8.206
-                                           C464.307,303.823,463.496,306.562,462.646,309.275z"/>
-                                       <g>
-                                           <polygon style="fill:#377CA5;" points="465.097,301.017 465.097,301.017 465.082,301.07 	"/>
-                                           <path style="fill:#377CA5;" d="M465.097,301.017L336.721,172.641l-29.204,29.204l-20.303-20.303l-16.946,16.946L171.032,99.25
+                                        C273.63,217.529,257.331,233.282,237.631,233.282z" />
+                            </svg>
+                            <span
+                                class="text-gray-400">{{ $settings->get('contact_address', 'الرياض، المملكة العربية السعودية') }}</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-primary-500" viewBox="0 0 473.931 473.931" xml:space="preserve">
+                                <circle style="fill:#4A86C5;" cx="236.966" cy="236.966" r="236.966" />
+                                <path style="fill:#3D80B2;" d="M404.518,69.383c92.541,92.549,92.549,242.59,0,335.138c-92.541,92.541-242.593,92.541-335.134,0
+                                           L404.518,69.383z" />
+                                <path style="fill:#4A86C5;" d="M462.646,309.275c0.868-2.713,1.658-5.456,2.432-8.206
+                                           C464.307,303.823,463.496,306.562,462.646,309.275z" />
+                                <g>
+                                    <polygon style="fill:#377CA5;"
+                                        points="465.097,301.017 465.097,301.017 465.082,301.07 	" />
+                                    <path style="fill:#377CA5;" d="M465.097,301.017L336.721,172.641l-29.204,29.204l-20.303-20.303l-16.946,16.946L171.032,99.25
                                                l-6.155-2.346l-38.08,38.08l45.968,45.964l-44.998,44.995l43.943,43.943l-48.048,48.052L276.475,470.59
                                                c87.984-14.78,159.5-77.993,186.175-161.311c0.849-2.716,1.658-5.452,2.432-8.206C465.082,301.055,465.09,301.032,465.097,301.017z
-                                               "/>
-                                       </g>
-                                       <path style="fill:#FFFFFF;" d="M358.565,230.459v87.883h-50.944v-81.997c0-20.595-7.375-34.656-25.811-34.656
+                                               " />
+                                </g>
+                                <path style="fill:#FFFFFF;" d="M358.565,230.459v87.883h-50.944v-81.997c0-20.595-7.375-34.656-25.811-34.656
                                            c-14.084,0-22.458,9.474-26.147,18.634c-1.343,3.278-1.688,7.835-1.688,12.423v85.593H203.02c0,0,0.681-138.875,0-153.259h50.952
                                            V186.8c-0.094,0.161-0.236,0.34-0.329,0.498h0.329V186.8c6.769-10.425,18.862-25.324,45.923-25.324
                                            C333.432,161.479,358.565,183.384,358.565,230.459z M149.7,91.198c-17.429,0-28.838,11.439-28.838,26.473
                                            c0,14.716,11.072,26.495,28.164,26.495h0.344c17.766,0,28.823-11.779,28.823-26.495C177.857,102.636,167.137,91.198,149.7,91.198z
-                                           M123.886,318.341h50.944V165.083h-50.944V318.341z"/>
-                                       </svg>
-                               <span class="text-gray-400"><a href="https://www.linkedin.com/company/{{ $settings->get('contact_linkedin', 'Sawaed-Alriyadh-ltd-co') }}" target="_blank">{{ $settings->get('contact_linkedin', 'Sawaed-Alriyadh-ltd-co') }}</a></span>
-                           </li>
-                            <li class="flex items-center gap-3">
-                                        <svg class="w-5 h-5 text-primary-500"
-                                            viewBox="0 0 64 64" xml:space="preserve">
-                                        <style type="text/css">
-                                            .st0{fill:#77B3D4;}
-                                            .st1{opacity:0.2;}
-                                            .st2{fill:#231F20;}
-                                            .st3{fill:#FFFFFF;}
-                                        </style>
-                                        <g id="Layer_1">
-                                            <g>
-                                                <circle class="st0" cx="32" cy="32" r="32"/>
-                                            </g>
-                                            <g class="st1">
-                                                <path class="st2" d="M32,12c-12.1,0-22,9.9-22,22s9.9,22,22,22c3.5,0,7-0.8,10.1-2.4c1-0.5,1.4-1.7,0.9-2.7s-1.7-1.4-2.7-0.9
+                                           M123.886,318.341h50.944V165.083h-50.944V318.341z" />
+                            </svg>
+                            <span class="text-gray-400"><a
+                                    href="https://www.linkedin.com/company/{{ $settings->get('contact_linkedin', 'Sawaed-Alriyadh-ltd-co') }}"
+                                    target="_blank">{{ $settings->get('contact_linkedin', 'Sawaed-Alriyadh-ltd-co') }}</a></span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-primary-500" viewBox="0 0 64 64" xml:space="preserve">
+                                <style type="text/css">
+                                    .st0 {
+                                        fill: #77B3D4;
+                                    }
+
+                                    .st1 {
+                                        opacity: 0.2;
+                                    }
+
+                                    .st2 {
+                                        fill: #231F20;
+                                    }
+
+                                    .st3 {
+                                        fill: #FFFFFF;
+                                    }
+                                </style>
+                                <g id="Layer_1">
+                                    <g>
+                                        <circle class="st0" cx="32" cy="32" r="32" />
+                                    </g>
+                                    <g class="st1">
+                                        <path class="st2"
+                                            d="M32,12c-12.1,0-22,9.9-22,22s9.9,22,22,22c3.5,0,7-0.8,10.1-2.4c1-0.5,1.4-1.7,0.9-2.7s-1.7-1.4-2.7-0.9
                                                     c-2.6,1.3-5.3,2-8.2,2c-9.9,0-18-8.1-18-18s8.1-18,18-18s18,8.1,18,18c0,3-0.8,6-2.2,8.6c-1.8-1.4-4.4-4.2-4.4-8.5v-8.8
                                                     c0-1.1-0.9-2-2-2s-2,0.9-2,2v0.1c-2-1.7-4.6-2.8-7.4-2.8c-6.3,0-11.4,5.1-11.4,11.4S25.7,45.4,32,45.4c3.7,0,7-1.8,9.1-4.6
                                                     c2.3,4.2,6.2,6.3,6.4,6.4c0.9,0.5,2,0.2,2.6-0.6c2.6-3.7,3.9-8,3.9-12.6C54,21.9,44.1,12,32,12z M32,41.4c-4.1,0-7.4-3.3-7.4-7.4
-                                                    c0-4.1,3.3-7.4,7.4-7.4s7.4,3.3,7.4,7.4C39.4,38.1,36.1,41.4,32,41.4z"/>
-                                            </g>
-                                            <g>
-                                                <path class="st3" d="M32,54c-12.1,0-22-9.9-22-22s9.9-22,22-22s22,9.9,22,22c0,4.5-1.4,8.9-3.9,12.6c-0.6,0.8-1.7,1.1-2.6,0.6
+                                                    c0-4.1,3.3-7.4,7.4-7.4s7.4,3.3,7.4,7.4C39.4,38.1,36.1,41.4,32,41.4z" />
+                                    </g>
+                                    <g>
+                                        <path class="st3" d="M32,54c-12.1,0-22-9.9-22-22s9.9-22,22-22s22,9.9,22,22c0,4.5-1.4,8.9-3.9,12.6c-0.6,0.8-1.7,1.1-2.6,0.6
                                                     c-0.3-0.2-8.1-4.2-8.1-13.1v-8.8c0-1.1,0.9-2,2-2c1.1,0,2,0.9,2,2v8.8c0,4.3,2.6,7.1,4.4,8.5C49.2,38,50,35,50,32
                                                     c0-9.9-8.1-18-18-18s-18,8.1-18,18s8.1,18,18,18c2.9,0,5.7-0.7,8.2-2c1-0.5,2.2-0.1,2.7,0.9c0.5,1,0.1,2.2-0.9,2.7
-                                                    C39,53.2,35.5,54,32,54z"/>
-                                            </g>
-                                            <g>
-                                                <path class="st3" d="M32,24.6c4.1,0,7.4,3.3,7.4,7.4s-3.3,7.4-7.4,7.4s-7.4-3.3-7.4-7.4S27.9,24.6,32,24.6 M32,20.6
-                                                    c-6.3,0-11.4,5.1-11.4,11.4S25.7,43.4,32,43.4S43.4,38.3,43.4,32S38.3,20.6,32,20.6L32,20.6z"/>
-                                            </g>
-                                        </g>
-                                        <g id="Layer_2">
-                                        </g>
-                                        </svg>
-                                <span class="text-gray-400"><a href="mailto:{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}">{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}</a></span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                        <svg class="w-5 h-5 text-primary-500"
-                                                    viewBox="0 0 64 64" xml:space="preserve">
-                                                <style type="text/css">
-                                                    .st0{fill:#77B3D4;}
-                                                    .st1{opacity:0.2;}
-                                                    .st2{fill:#231F20;}
-                                                    .st3{fill:#FFFFFF;}
-                                                </style>
-                                                <g id="Layer_1">
-                                                    <g>
-                                                        <circle class="st0" cx="32" cy="32" r="32"/>
-                                                    </g>
-                                                    <g class="st1">
-                                                        <g>
-                                                            <path class="st2" d="M29,25.3c-0.4-4.8-5.4-7.1-5.6-7.2C23.1,18,22.9,18,22.7,18c-5.8,1-6.6,4.3-6.7,4.5c0,0.2,0,0.4,0,0.6
+                                                    C39,53.2,35.5,54,32,54z" />
+                                    </g>
+                                    <g>
+                                        <path class="st3"
+                                            d="M32,24.6c4.1,0,7.4,3.3,7.4,7.4s-3.3,7.4-7.4,7.4s-7.4-3.3-7.4-7.4S27.9,24.6,32,24.6 M32,20.6
+                                                    c-6.3,0-11.4,5.1-11.4,11.4S25.7,43.4,32,43.4S43.4,38.3,43.4,32S38.3,20.6,32,20.6L32,20.6z" />
+                                    </g>
+                                </g>
+                                <g id="Layer_2">
+                                </g>
+                            </svg>
+                            <span class="text-gray-400"><a
+                                    href="mailto:{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}">{{ $settings->get('contact_email', 'info@sawaedalriyadh.com') }}</a></span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-primary-500" viewBox="0 0 64 64" xml:space="preserve">
+                                <style type="text/css">
+                                    .st0 {
+                                        fill: #77B3D4;
+                                    }
+
+                                    .st1 {
+                                        opacity: 0.2;
+                                    }
+
+                                    .st2 {
+                                        fill: #231F20;
+                                    }
+
+                                    .st3 {
+                                        fill: #FFFFFF;
+                                    }
+                                </style>
+                                <g id="Layer_1">
+                                    <g>
+                                        <circle class="st0" cx="32" cy="32" r="32" />
+                                    </g>
+                                    <g class="st1">
+                                        <g>
+                                            <path class="st2" d="M29,25.3c-0.4-4.8-5.4-7.1-5.6-7.2C23.1,18,22.9,18,22.7,18c-5.8,1-6.6,4.3-6.7,4.5c0,0.2,0,0.4,0,0.6
                                                                 c6.9,21.4,21.2,25.3,25.9,26.6c0.4,0.1,0.7,0.2,0.9,0.3c0.1,0,0.2,0.1,0.3,0.1c0.2,0,0.3,0,0.5-0.1c0.1-0.1,3.5-1.7,4.4-6.9
                                                                 c0-0.2,0-0.5-0.1-0.7c-0.1-0.1-1.9-3.5-6.8-4.7c-0.3-0.1-0.7,0-1,0.2c-1.6,1.3-3.7,2.7-4.6,2.9c-6.2-3-9.7-8.9-9.8-10
-                                                                c-0.1-0.6,1.3-2.8,3-4.6C28.9,26,29,25.6,29,25.3z"/>
-                                                        </g>
-                                                    </g>
-                                                    <g>
-                                                        <g>
-                                                            <path class="st3" d="M29,23.3c-0.4-4.8-5.4-7.1-5.6-7.2C23.1,16,22.9,16,22.7,16c-5.8,1-6.6,4.3-6.7,4.5c0,0.2,0,0.4,0,0.6
+                                                                c-0.1-0.6,1.3-2.8,3-4.6C28.9,26,29,25.6,29,25.3z" />
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <g>
+                                            <path class="st3" d="M29,23.3c-0.4-4.8-5.4-7.1-5.6-7.2C23.1,16,22.9,16,22.7,16c-5.8,1-6.6,4.3-6.7,4.5c0,0.2,0,0.4,0,0.6
                                                                 c6.9,21.4,21.2,25.3,25.9,26.6c0.4,0.1,0.7,0.2,0.9,0.3c0.1,0,0.2,0.1,0.3,0.1c0.2,0,0.3,0,0.5-0.1c0.1-0.1,3.5-1.7,4.4-6.9
                                                                 c0-0.2,0-0.5-0.1-0.7c-0.1-0.1-1.9-3.5-6.8-4.7c-0.3-0.1-0.7,0-1,0.2c-1.6,1.3-3.7,2.7-4.6,2.9c-6.2-3-9.7-8.9-9.8-10
-                                                                c-0.1-0.6,1.3-2.8,3-4.6C28.9,24,29,23.6,29,23.3z"/>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                                <g id="Layer_2">
-                                                </g>
-                                            </svg>
-                                <span class="text-gray-400"><a href="tel:+{{ $settings->get('contact_phone', '966114038104') }}">{{ $settings->get('contact_phone', '966114038104') }}</a></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-                    &copy; {{ date('Y') }} شركة سواعد الرياض. جميع الحقوق محفوظة.
+                                                                c-0.1-0.6,1.3-2.8,3-4.6C28.9,24,29,23.6,29,23.3z" />
+                                        </g>
+                                    </g>
+                                </g>
+                                <g id="Layer_2">
+                                </g>
+                            </svg>
+                            <span class="text-gray-400"><a
+                                    href="tel:+{{ $settings->get('contact_phone', '966114038104') }}">{{ $settings->get('contact_phone', '966114038104') }}</a></span>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </footer>
-        <script>
-            // Mobile Menu Logic
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const closeMenuBtn = document.getElementById('close-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                &copy; {{ date('Y') }} شركة سواعد الرياض. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-            function toggleMenu() {
-                const isHidden = mobileMenu.classList.contains('translate-x-full');
-                if (isHidden) {
-                    mobileMenu.classList.remove('translate-x-full');
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling
-                    
-                    // Animate links in
-                    mobileLinks.forEach((link, index) => {
-                        setTimeout(() => {
-                            link.classList.remove('opacity-0', 'translate-y-8');
-                        }, 150 + (index * 100));
-                    });
-                } else {
-                    mobileMenu.classList.add('translate-x-full');
-                    document.body.style.overflow = ''; // Enable scrolling
-                    
-                    // Reset links
-                    mobileLinks.forEach(link => {
-                        link.classList.add('opacity-0', 'translate-y-8');
-                    });
-                }
+        function toggleMenu() {
+            const isHidden = mobileMenu.classList.contains('translate-x-full');
+            if (isHidden) {
+                mobileMenu.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+                // Animate links in
+                mobileLinks.forEach((link, index) => {
+                    setTimeout(() => {
+                        link.classList.remove('opacity-0', 'translate-y-8');
+                    }, 150 + (index * 100));
+                });
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = ''; // Enable scrolling
+
+                // Reset links
+                mobileLinks.forEach(link => {
+                    link.classList.add('opacity-0', 'translate-y-8');
+                });
             }
+        }
 
-            if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
-            if(closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMenu);
-            
-            // Close menu when clicking a link
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', toggleMenu);
-            });
-        </script>
-    </body>
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
+        if (closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+    </script>
+</body>
+
 </html>
