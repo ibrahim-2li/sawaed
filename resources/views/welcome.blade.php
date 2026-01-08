@@ -188,27 +188,7 @@
     <section id="about" class="py-20 overflow-hidden bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="relative">
-                    <div class="absolute -inset-4 bg-primary-100 rounded-2xl transform rotate-3"></div>
-                    <img src="{{ asset($settings->get('about_image')) ?: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80' }}"
-                        alt="About Sawaed" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
-                    <div
-                        class="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 bg-white p-4 md:p-6 rounded-xl shadow-xl max-w-[180px] md:max-w-xs border-t-4 border-secondary-600 z-20">
-                        <div class="flex items-center gap-3 md:gap-4">
-                            <div class="bg-primary-50 p-2 md:p-3 rounded-full text-primary-600">
-                                <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-xs md:text-sm text-gray-500">خبرة أكثر من</p>
-                                <p class="text-lg md:text-2xl font-bold text-gray-900">33 سنة</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div>
                     <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">من نحن</h2>
                     <h3 class="text-4xl font-bold text-gray-900 mb-6">
@@ -245,6 +225,27 @@
                             <div>
                                 <h4 class="font-bold text-gray-900">سرعة التنفيذ</h4>
                                 <p class="text-sm text-gray-500 mt-1">إنجاز المشاريع في الوقت المحدد</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-primary-100 rounded-2xl transform rotate-3"></div>
+                    <img src="{{ asset($settings->get('about_image')) ?: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80' }}"
+                        alt="About Sawaed" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
+                    <div
+                        class="absolute -bottom-6 -left-4 md:-bottom-10 md:-left-10 bg-white p-4 md:p-6 rounded-xl shadow-xl max-w-[180px] md:max-w-xs border-t-4 border-secondary-600 z-20">
+                        <div class="flex items-center gap-3 md:gap-4">
+                            <div class="bg-primary-50 p-2 md:p-3 rounded-full text-primary-600">
+                                <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs md:text-sm text-gray-500">خبرة أكثر من</p>
+                                <p class="text-lg md:text-2xl font-bold text-gray-900">33 سنة</p>
                             </div>
                         </div>
                     </div>
@@ -443,6 +444,14 @@
 
                     <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
                         @csrf
+
+                        {{-- Honeypot field (hidden from users, bots will fill it) --}}
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        {{-- Timestamp for time-based validation --}}
+                        <input type="hidden" name="form_token" value="{{ time() }}">
 
                         <div>
                             <label for="name" class="block text-sm font-bold text-gray-700 mb-2">الاسم الكامل
