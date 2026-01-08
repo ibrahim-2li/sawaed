@@ -187,9 +187,9 @@
     <!-- About Section -->
     <section id="about" class="py-20 overflow-hidden bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="flex flex-col-reverse lg:flex-row gap-16 items-center">
 
-                <div>
+                <div class="w-full lg:w-1/2 flex-shrink-0">
                     <h2 class="text-secondary-600 font-bold tracking-wide uppercase text-sm mb-2">من نحن</h2>
                     <h3 class="text-4xl font-bold text-gray-900 mb-6">
                         {{ $settings->get('about_title', 'شريكك الاستراتيجي للنجاح والتميز') }}</h3>
@@ -229,7 +229,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative">
+                <div class="relative w-full lg:w-1/2 flex-shrink-0">
                     <div class="absolute -inset-4 bg-primary-100 rounded-2xl transform rotate-3"></div>
                     <img src="{{ asset($settings->get('about_image')) ?: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80' }}"
                         alt="About Sawaed" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
