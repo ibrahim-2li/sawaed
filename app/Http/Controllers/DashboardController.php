@@ -258,6 +258,20 @@ class DashboardController extends Controller
         return redirect()->route('dashboard')->with('success', 'تم حذف الرسالة بنجاح.')->withFragment('messages');
     }
 
+    public function bulkReadContacts(Request $request)
+    {
+        $request->validate(['ids' => 'required|array']);
+        Contact::whereIn('id', $request->ids)->update(['is_read' => true]);
+        return redirect()->route('dashboard')->with('success', 'تم تحديد الرسائل كمقروءة.')->withFragment('messages');
+    }
+
+    public function bulkDeleteContacts(Request $request)
+    {
+        $request->validate(['ids' => 'required|array']);
+        Contact::whereIn('id', $request->ids)->delete();
+        return redirect()->route('dashboard')->with('success', 'تم حذف الرسائل المحددة.')->withFragment('messages');
+    }
+
     public function storeBrand(Request $request)
     {
         $validated = $request->validate([

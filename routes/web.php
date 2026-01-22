@@ -51,4 +51,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     Route::put('/contacts/{contact}/toggle-read', [DashboardController::class, 'toggleReadContact'])->name('dashboard.contacts.toggle-read');
     Route::delete('/contacts/{contact}', [DashboardController::class, 'destroyContact'])->name('dashboard.contacts.destroy');
+
+    Route::post('/contacts/bulk-read', [DashboardController::class, 'bulkReadContacts'])->name('dashboard.contacts.bulk-read');
+    Route::post('/contacts/bulk-delete', [DashboardController::class, 'bulkDeleteContacts'])->name('dashboard.contacts.bulk-delete');
 });
